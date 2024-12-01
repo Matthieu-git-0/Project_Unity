@@ -2,11 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class LoadingScreen : MonoBehaviour
 {
     public Slider loadingSlider;
-    public Text loadingText;
+    public TMP_Text loadingText;
     public float simulatedLoadDuration = 5f; // Temps en secondes pour simuler un chargement plus long
 
     void Start()

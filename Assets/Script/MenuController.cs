@@ -12,6 +12,7 @@ public class MenuController: MonoBehaviour
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private float defaultVolume = 1.0f;
+    [SerializeField] private AudioSource audioSource;
     
     [Header("GamePlay Settings")]
     [SerializeField] private TMP_Text controllerSensTextValue = null;
@@ -74,29 +75,7 @@ public class MenuController: MonoBehaviour
         // Initialiser les paramètres par défaut
         InitializeSettings();
     }
-
-    /*IEnumerator LoadAsyncScene()
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("MainMenu");
-        operation.allowSceneActivation = false;
-
-        while (!operation.isDone)
-        {
-            mybuttton.onClick.AddListener(OndClick());
-            if (isclick)
-            {
-                operation.allowSceneActivation = true;
-            }
-
-            yield return null;
-        }
-    }*/
-
-    /*void OndClick ()
-    {
-        isclick = true;
-    }*/
-
+    
     void InitializeSettings()
     {
         // Luminosité par défaut
@@ -105,22 +84,16 @@ public class MenuController: MonoBehaviour
 
         // Mode plein écran
         fullscreenToggle.isOn = Screen.fullScreen;
-
-        // Résolution par défaut
-        // Définir la résolution initiale à 1920x1080 en plein écran
         Screen.SetResolution(1920, 1080, true);
         int currentResolutionIndex = System.Array.FindIndex(resolutions, r => r.width == Screen.currentResolution.width && r.height == Screen.currentResolution.height);
         resolutionDropdown.value = currentResolutionIndex != -1 ? currentResolutionIndex : 0;
-
-        // Qualité par défaut
+        
         qualityDropdown.value = QualitySettings.GetQualityLevel();
     }
-
-    // Callbacks des UI Elements
+    
     void OnBrightnessChanged(float value)
     {
         brightnessValueText.text = value.ToString("0.0");
-        // Exemple : ajuster une lumière dans la scène
         RenderSettings.ambientLight = Color.white * (value / 10);
     }
 
@@ -165,8 +138,10 @@ public class MenuController: MonoBehaviour
 
     public void SetVolume(float volume)
     {
+        audioSource.volume = volume;
         AudioListener.volume = volume;
-        volumeTextValue.text = volume.ToString("0.0");
+        float new_volume = volume * 100f;
+        volumeTextValue.text = new_volume.ToString("0");
     }
 
     public void VolumeApply()
