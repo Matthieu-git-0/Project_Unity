@@ -12,7 +12,7 @@ public class MenuController: MonoBehaviour
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private float defaultVolume = 1.0f;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource = null;
     
     [Header("GamePlay Settings")]
     [SerializeField] private TMP_Text controllerSensTextValue = null;
