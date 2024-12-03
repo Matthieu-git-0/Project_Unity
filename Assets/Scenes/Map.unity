@@ -130,6 +130,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 232781921720816055, guid: 535475be8e254e84abf145c13c494571, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 232781921720816055, guid: 535475be8e254e84abf145c13c494571, type: 3}
+      propertyPath: m_TagString
+      value: Interaction/Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3251074574764401055, guid: 535475be8e254e84abf145c13c494571, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4621196548650323938, guid: 535475be8e254e84abf145c13c494571, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.9997125
@@ -174,9 +186,29 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 72f721d6bb3c14b49a5c3b5840707a36, type: 2}
+    - target: {fileID: 7274864305320163749, guid: 535475be8e254e84abf145c13c494571, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280219611782270667, guid: 535475be8e254e84abf145c13c494571, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8537294502963363313, guid: 535475be8e254e84abf145c13c494571, type: 3}
       propertyPath: m_Name
       value: Lab_Wall_Door_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537294502963363313, guid: 535475be8e254e84abf145c13c494571, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662394616154289908, guid: 535475be8e254e84abf145c13c494571, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662394616154289908, guid: 535475be8e254e84abf145c13c494571, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -184,7 +216,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 232781921720816055, guid: 535475be8e254e84abf145c13c494571, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1281985858}
+      addedObject: {fileID: 1281985863}
   m_SourcePrefab: {fileID: 100100000, guid: 535475be8e254e84abf145c13c494571, type: 3}
 --- !u!1 &36227566
 GameObject:
@@ -2349,7 +2381,7 @@ GameObject:
   - component: {fileID: 1063190370}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Player
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2395,7 +2427,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 69
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3093,7 +3125,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 232781921720816055, guid: 535475be8e254e84abf145c13c494571, type: 3}
   m_PrefabInstance: {fileID: 5477898}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1281985858
+--- !u!95 &1281985859 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7180438555805081414, guid: 535475be8e254e84abf145c13c494571, type: 3}
+  m_PrefabInstance: {fileID: 5477898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1281985863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3102,11 +3139,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1281985856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 266ae6383c770494ba2a8d8e32af8dae, type: 3}
+  m_Script: {fileID: 11500000, guid: 20f083e01833da04fbc5b71e9304ade5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2068089163}
-  interactionDistance: 3
+  animator: {fileID: 1281985859}
+  isOpen: 0
 --- !u!1001 &1309161607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4255,6 +4292,7 @@ GameObject:
   - component: {fileID: 2068089161}
   - component: {fileID: 2068089160}
   - component: {fileID: 2068089159}
+  - component: {fileID: 2068089165}
   - component: {fileID: 2068089158}
   - component: {fileID: 2068089164}
   m_Layer: 0
@@ -4413,6 +4451,23 @@ MonoBehaviour:
   playerCamera: {fileID: 1063190371}
   lookSpeed: 2
   lookXLimit: 45
+--- !u!114 &2068089165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068089157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5062db148e6f1624a9e1445e52e7555a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 1063190371}
+  interactionDistance: 5
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &2070219557
 PrefabInstance:
   m_ObjectHideFlags: 0
