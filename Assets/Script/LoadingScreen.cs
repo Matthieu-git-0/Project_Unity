@@ -18,7 +18,7 @@ public class LoadingScreen : MonoBehaviour
     IEnumerator LoadAsyncScene()
     {
         // Commence le chargement de la scène en arrière-plan
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Map_v1");
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Map");
         operation.allowSceneActivation = false;
 
         float simulatedProgress = 0f; // Progression simulée pour la barre de chargement

@@ -38,7 +38,7 @@ public class CharacterInteraction : MonoBehaviour
                     break;
 
                 default:
-                    Debug.Log("Objet non interactif touché.");
+                    //Debug.Log("Objet non interactif touché.");
                     break;
             }
         }
