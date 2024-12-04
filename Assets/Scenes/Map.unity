@@ -203,12 +203,16 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8662394616154289908, guid: 535475be8e254e84abf145c13c494571, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662394616154289908, guid: 535475be8e254e84abf145c13c494571, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8662394616154289908, guid: 535475be8e254e84abf145c13c494571, type: 3}
       propertyPath: m_ProvidesContacts
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6689,7 +6693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 6
   runSpeed: 12
-  jumpPower: 7
+  jumpPower: 5
   gravity: 10
   defaultHeight: 2
   crouchHeight: 1
