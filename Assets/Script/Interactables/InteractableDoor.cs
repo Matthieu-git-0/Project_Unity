@@ -21,13 +21,13 @@ public class InteractableDoor : MonoBehaviour
 
     public void Open()
     {
-        isOpen = true;
-        animator.SetBool("isOpen", isOpen);
+        animator.SetBool("isOpen", true);
+        StartCoroutine(CloseAfterDelay(5f));
     }
 
-    public void close()
+    private IEnumerator CloseAfterDelay(float delay)
     {
-        isOpen = false;
-        animator.SetBool("isOpen", isOpen);
+        yield return new WaitForSeconds(delay);
+        animator.SetBool("isOpen", false);
     }
 }

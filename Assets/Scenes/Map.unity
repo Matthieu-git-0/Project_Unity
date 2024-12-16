@@ -12509,6 +12509,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1284685178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284685168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f083e01833da04fbc5b71e9304ade5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1284685173}
+  isOpen: 0
 --- !u!4 &1285413583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8308820406074582067, guid: 584c5a9cffd9b814aa4f0b3e62507222, type: 3}
@@ -16394,9 +16408,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2797809972704814648, guid: 695dfddbb6bd1e148a5b94d27fd6b1b8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2797809972704814648, guid: 695dfddbb6bd1e148a5b94d27fd6b1b8, type: 3}
+      propertyPath: m_TagString
+      value: Interaction/Slice
+      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 695dfddbb6bd1e148a5b94d27fd6b1b8, type: 3}
       propertyPath: m_Name
       value: Laboratory_Tunnel_Door_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906121763859712577, guid: 695dfddbb6bd1e148a5b94d27fd6b1b8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16405,6 +16431,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2797809972704814648, guid: 695dfddbb6bd1e148a5b94d27fd6b1b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1284685173}
+    - targetCorrespondingSourceObject: {fileID: -2797809972704814648, guid: 695dfddbb6bd1e148a5b94d27fd6b1b8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1284685178}
   m_SourcePrefab: {fileID: 100100000, guid: 695dfddbb6bd1e148a5b94d27fd6b1b8, type: 3}
 --- !u!4 &1747585648 stripped
 Transform:

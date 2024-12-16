@@ -37,9 +37,30 @@ public class CharacterInteraction : MonoBehaviour
                     InteractionDoor(hit);
                     break;
 
+                case "Interaction/Slice":
+                    InteractionDoor_Slice(hit);
+                    break;
+
                 default:
                     //Debug.Log("Objet non interactif touché.");
                     break;
+            }
+        }
+    }
+
+    private void InteractionDoor_Slice(RaycastHit hit)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            InteractableDoor door = hit.collider.GetComponent<InteractableDoor>();
+
+            if (door != null)
+            {
+                door.Open();
+            }
+            else
+            {
+                Debug.LogError("Le script InteractableDoor est manquant.", hit.collider);
             }
         }
     }
