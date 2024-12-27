@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 994146970686119526}
   - component: {fileID: -596122911632977655}
   m_Layer: 0
-  m_Name: Player_multi
+  m_Name: Don't touch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

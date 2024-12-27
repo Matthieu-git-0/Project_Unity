@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 using Photon.Realtime;
 
 public class RoomsManager : MonoBehaviourPunCallbacks
 {
     public GameObject playerPrefab;
-    public GameObject camera;
+    public GameObject Mainmenu;
+    
+    [Space]
+    public TMP_InputField roomCodeInput;
+    public TMP_Text statusText;
     
     [Space]
     public Transform spawnPoint1;
@@ -15,35 +20,54 @@ public class RoomsManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        Debug.Log("Connecting ...");
+        statusText.text = "Connecting...";
+        Debug.Log("Connecting...");
 
         PhotonNetwork.ConnectUsingSettings();
-        //PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu"; // Exemple : Europe
     }
 
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
 
-        Debug.Log("Connected to Server");
+        statusText.text = "Connected to server";
+        Debug.Log("Connected to server");
 
-        PhotonNetwork.JoinLobby();
+        //PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedLobby()
     {
         base.OnJoinedLobby();
+        
+        if (!PhotonNetwork.IsConnectedAndReady)
+        {
+            statusText.text = "Connecting to server...";
+            Debug.LogWarning("The client is not ready yet. Please wait for the connection to the Master Server.");
+            return;
+        }
 
-        Debug.Log("We are in the Lobby");
+        string roomCode = roomCodeInput.text;
 
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 2;
-        roomOptions.IsVisible = true;
-        roomOptions.IsOpen = true;
+        if (!string.IsNullOrEmpty(roomCode))
+        {
+            statusText.text = "Trying to connect to the room...";
+            Debug.Log("We are in the Lobby");
 
-        TypedLobby typedLobby = new TypedLobby("DefaultLobby", LobbyType.Default);
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.MaxPlayers = 2;
+            roomOptions.IsVisible = true;
+            roomOptions.IsOpen = true;
 
-        PhotonNetwork.JoinOrCreateRoom("test", roomOptions, typedLobby);
+            TypedLobby typedLobby = new TypedLobby("DefaultLobby", LobbyType.Default);
+
+            PhotonNetwork.JoinOrCreateRoom(roomCode, roomOptions, typedLobby);
+        }
+        else
+        {
+            statusText.text = "The room code is empty!";
+            return;
+        }
 
     }
 
@@ -51,6 +75,9 @@ public class RoomsManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         Debug.Log("Joined Room: " + PhotonNetwork.CurrentRoom.Name);
+        statusText.text = "Joined Room: " + PhotonNetwork.CurrentRoom.Name;
+        
+        Mainmenu.SetActive(false);
 
         if (playerPrefab != null)
         {
@@ -68,15 +95,6 @@ public class RoomsManager : MonoBehaviourPunCallbacks
             GameObject _player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity);
             _player.GetComponent<PlayerSetup>()?.IslocalPlayer();
             Debug.Log("Player instantiated at: " + spawnPoint.position);
-            
-            if (camera != null)
-            {
-                camera.SetActive(false);
-            }
-            else
-            {
-                Debug.LogWarning("Camera is not assigned!");
-            }
         }
         else
         {

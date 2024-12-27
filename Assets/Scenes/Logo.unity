@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e95bd20804b9248897a03893e44d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: MainJeu
+  nextSceneName: Map_Multi
 --- !u!1 &1429224291
 GameObject:
   m_ObjectHideFlags: 0

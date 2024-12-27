@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class RoomManager : MonoBehaviourPunCallbacks
+/*public class RoomManager : MonoBehaviourPunCallbacks
 {
     public TMP_InputField roomCodeInput; // Champ pour entrer le code de la salle
     public TMP_Text statusText; // Texte optionnel pour afficher les statuts (facultatif)
@@ -87,4 +87,4 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("Salle créée avec succès !");
         statusText.text = "Salle créée avec succès ! En attente des autres joueurs...";
     }
-}
+}*/
