@@ -11149,6 +11149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCodeInput: {fileID: 1090001609}
   statusText: {fileID: 804080205}
+  playerPrefab: {fileID: 7754546622745751677, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+  spawnPoint1: {fileID: 0}
+  spawnPoint2: {fileID: 0}
 --- !u!114 &1528498543
 MonoBehaviour:
   m_ObjectHideFlags: 0
