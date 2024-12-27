@@ -71129,7 +71129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2080837894}
   - component: {fileID: 2080837891}
-  - component: {fileID: 2080837895}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -71181,28 +71180,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1169253955}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2080837895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080837890}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0fca1df2b0e6a449364d4b49a3dc3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creditsText: "Titre du jeu : IObelix Adventures\r\n\r\nD\xE9veloppement :\r\n-
-    Jules Cleret-Bissoulet\r\n- Eduardo Costa Paulo\r\n- Thomas Chauvir\xE9\r\n-
-    Matthieu Deniau\r\n- Mathieu Cl\xE9ment\r\n\r\nGame Design :\r\n- Jules Cleret-Bissoulet\r\n-
-    Eduardo Costa Paulo\r\n\r\nGraphismes :\r\n- Eduardo Costa Paulo\r\n- Thomas
-    Chauvir\xE9\r\n\r\nProgrammation :\r\n- Matthieu Deniau\r\n- Mathieu Cl\xE9ment\r\n\r\nMusique
-    et Effets Sonores :\r\n- Nom du compositeur ou 'Assets libres de droits'\r\n\r\nRemerciements
-    :\r\n- EPITA pour le cadre de travail\r\n- OpenAI pour l'assistance technique\r\n-
-    Famille et amis pour leur soutien\r\n\r\nUn grand merci \xE0 vous d'avoir jou\xE9
-    \xE0 notre jeu !"
-  creditsDisplay: {fileID: 1092974054}
 --- !u!1001 &2081375307
 PrefabInstance:
   m_ObjectHideFlags: 0
