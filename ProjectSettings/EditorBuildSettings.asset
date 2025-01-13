@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Logo.unity
     guid: e3945a23b9686c14f80bac1e1abdf049
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 897218c78b8f25a419607a91684a467e
+  - enabled: 1
     path: Assets/Scenes/Map_Multi.unity
     guid: f92f585b23ad11d4eb6e33a0db7d5580
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ChargementScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
