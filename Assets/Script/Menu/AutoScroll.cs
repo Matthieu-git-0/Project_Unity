@@ -8,7 +8,7 @@ public class AutoScroll : MonoBehaviour
     {
         transform.Translate(Vector3.up * scrollSpeed * Time.deltaTime);
         
-        if (transform.localPosition.y > 2000)
+        if (transform.localPosition.y > 1830)
         {
             transform.localPosition = new Vector3(0, -500, 0);
         }
