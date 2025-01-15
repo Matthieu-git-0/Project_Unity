@@ -10,6 +10,7 @@ public class IAennemi : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()

@@ -3591,7 +3591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &101156682
 Transform:
   m_ObjectHideFlags: 0
@@ -14729,7 +14729,7 @@ Transform:
   m_GameObject: {fileID: 473775178}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 13.76, y: 3.58, z: 29.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27210,15 +27210,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 670315587642549247, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408993731811644487, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2503789813601456654, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
       propertyPath: sceneViewId
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2503789813601456654, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2503789813601456654, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804219626360637846, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750327785374365250, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7754546622745751677, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
       propertyPath: m_Name
       value: Player_solo
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3417217595776041030, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+    - {fileID: 2526083209212796859, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+    - {fileID: 2503789813601456654, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+    - {fileID: 5198987988866813543, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
