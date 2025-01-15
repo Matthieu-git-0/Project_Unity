@@ -5,7 +5,6 @@ using UnityEngine;
 public class InteractableDoor : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-
     [SerializeField] private bool isOpen = false;
 
     public void Start()
