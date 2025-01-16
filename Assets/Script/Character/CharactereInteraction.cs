@@ -40,10 +40,33 @@ public class CharacterInteraction : MonoBehaviour
                 case "Interaction/Slice":
                     InteractionDoor_Slice(hit);
                     break;
+                case "Interaction/Drawer":
+                    InteractionDrawer(hit);
+                    break;
+                case "Interaction/Key":
+                    break;
+                    //InteractionKey(hit);
 
                 default:
                     //Debug.Log("Objet non interactif touché.");
                     break;
+            }
+        }
+    }
+    
+    private void InteractionDrawer(RaycastHit hit)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            InteractableDrawer drawer = hit.collider.GetComponent<InteractableDrawer>();
+
+            if (drawer != null)
+            {
+                drawer.Interact();
+            }
+            else
+            {
+                Debug.LogError("Le script InteractableDrawer est manquant.", hit.collider);
             }
         }
     }
