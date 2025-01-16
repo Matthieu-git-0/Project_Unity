@@ -44,12 +44,30 @@ public class CharacterInteraction : MonoBehaviour
                     InteractionDrawer(hit);
                     break;
                 case "Interaction/Key":
-                    break;
-                    //InteractionKey(hit);
+                    InteractionKey(hit);
+					break;
 
                 default:
                     //Debug.Log("Objet non interactif touché.");
                     break;
+            }
+        }
+    }
+
+	private void InteractionKey(RaycastHit hit)
+    {
+		Debug.Log("touche");
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            InteractableKey key = hit.collider.GetComponent<InteractableKey>();
+
+            if (key != null)
+            {
+                key.Take();
+            }
+            else
+            {
+                Debug.LogError("Le script InteractableDrawer est manquant.", hit.collider);
             }
         }
     }
@@ -90,8 +108,8 @@ public class CharacterInteraction : MonoBehaviour
 
     private void InteractionDoor(RaycastHit hit)
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
+        if (Input.GetKeyDown(KeyCode.E) && PlayerPrefs.HasKey("Key") && PlayerPrefs.GetString("Key") == "true")
+		{
             InteractableDoor door = hit.collider.GetComponent<InteractableDoor>();
 
             if (door != null)
