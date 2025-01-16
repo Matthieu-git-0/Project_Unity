@@ -5,9 +5,12 @@ public class IAennemi : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] float triggerRadius = 10f;
+    [Space]
+    
     [SerializeField] GameObject jeu;
     [SerializeField] GameObject menu;
-    
+    [SerializeField] GameObject textgameover;
+    [SerializeField] Animator animator;
     NavMeshAgent agent;
 
     void Start()
@@ -20,10 +23,12 @@ public class IAennemi : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, target.position) <= triggerRadius)
         {
+            animator.SetBool("IsWalk", true);
             if (Vector3.Distance(transform.position, target.position) <= 2f)
             {
                 jeu.SetActive(false);
                 menu.SetActive(true);
+                textgameover.SetActive(true);
                 //agent.ResetPath();
                 return;
             }
@@ -32,6 +37,7 @@ public class IAennemi : MonoBehaviour
         else
         {
             agent.ResetPath(); // Arrête l'agent si la cible sort du rayon
+            animator.SetBool("IsWalk", false);
         }
     }
 
