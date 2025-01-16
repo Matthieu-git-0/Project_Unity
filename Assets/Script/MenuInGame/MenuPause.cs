@@ -7,11 +7,10 @@ public class MenuPause : MonoBehaviour
 {
     [SerializeField] private GameObject jeu;
     [SerializeField] private GameObject menu;
-    private bool isPaused = false; // Variable pour suivre l'état de pause
+    private bool isPaused = false;
 
     void Update()
     {
-        // Détecter l'appui sur la touche Échap
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
@@ -20,17 +19,17 @@ public class MenuPause : MonoBehaviour
 
     public void TogglePause()
     {
-        isPaused = !isPaused; // Basculer l'état de pause
+        isPaused = !isPaused;
 
-        jeu.SetActive(!isPaused); // Activer/désactiver le jeu
-        menu.SetActive(isPaused); // Activer/désactiver le menu
+        jeu.SetActive(!isPaused);
+        menu.SetActive(isPaused);
 
-        // Gérer le curseur
         Cursor.visible = isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
     }
     public void BackToMenu()
     {
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene("MainMenu");
     }
 }

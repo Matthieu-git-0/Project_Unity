@@ -14,7 +14,7 @@ public class IArobot : MonoBehaviour
 
         if (Physics.Raycast(rayon, out hit, Mathf.Infinity))
         {
-            Debug.Log("Objet; " + hit.collider.name + "Distance: " + hit.distance );
+            //Debug.Log("Objet; " + hit.collider.name + "Distance: " + hit.distance );
             if (hit.distance < 1)
             {
                 float angle = Random.Range(100, 300);

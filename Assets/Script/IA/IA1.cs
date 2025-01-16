@@ -4,7 +4,10 @@ using UnityEngine.AI;
 public class IAennemi : MonoBehaviour
 {
     [SerializeField] Transform target;
-    [SerializeField] float triggerRadius = 10f; // Rayon pour déclencher le mouvement
+    [SerializeField] float triggerRadius = 10f;
+    [SerializeField] GameObject jeu;
+    [SerializeField] GameObject menu;
+    
     NavMeshAgent agent;
 
     void Start()
@@ -17,6 +20,13 @@ public class IAennemi : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, target.position) <= triggerRadius)
         {
+            if (Vector3.Distance(transform.position, target.position) <= 2f)
+            {
+                jeu.SetActive(false);
+                menu.SetActive(true);
+                //agent.ResetPath();
+                return;
+            }
             agent.SetDestination(target.position);
         }
         else
