@@ -11,7 +11,7 @@ public class MenuController: MonoBehaviour
     [Header("Volume Settings")] 
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
-    [SerializeField] private float defaultVolume = 1.0f;
+    [SerializeField] private float defaultVolume = 100f;
     [SerializeField] private AudioSource audioSource = null;
     
     [Header("GamePlay Settings")]
@@ -178,7 +178,7 @@ public class MenuController: MonoBehaviour
         {
             AudioListener.volume = defaultVolume;
             volumeSlider.value = defaultVolume;
-            volumeTextValue.text = defaultVolume.ToString("0.0");
+            volumeTextValue.text = defaultVolume.ToString("0");
             VolumeApply();
         }
 

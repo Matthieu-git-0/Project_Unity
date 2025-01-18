@@ -19,13 +19,14 @@ public class IAennemi : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    void Update()
+    /*void Update()
     {
         if (Vector3.Distance(transform.position, target.position) <= triggerRadius)
         {
             animator.SetBool("IsWalk", true);
             if (Vector3.Distance(transform.position, target.position) <= 2f)
             {
+                animator.SetBool("IsWalk", false);
                 jeu.SetActive(false);
                 menu.SetActive(true);
                 textgameover.SetActive(true);
@@ -36,10 +37,47 @@ public class IAennemi : MonoBehaviour
         }
         else
         {
-            agent.ResetPath(); // Arrête l'agent si la cible sort du rayon
             animator.SetBool("IsWalk", false);
+            agent.ResetPath(); // Arrête l'agent si la cible sort du rayon
+            
+        }
+    }*/
+    
+    void Update()
+    {
+        float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+        if (distanceToTarget <= triggerRadius)
+        {
+            agent.SetDestination(target.position);
+
+            // Active l'animation si l'agent se déplace
+            if (agent.velocity.magnitude > 0.1f)
+            {
+                animator.SetBool("IsWalk", true);
+            }
+            else
+            {
+                animator.SetBool("IsWalk", false);
+            }
+
+            // Vérifie si l'ennemi est proche du joueur (Game Over)
+            if (distanceToTarget <= 2f)
+            {
+                animator.SetBool("IsWalk", false);
+                jeu.SetActive(false);
+                menu.SetActive(true);
+                textgameover.SetActive(true);
+                return;
+            }
+        }
+        else
+        {
+            animator.SetBool("IsWalk", false);
+            agent.ResetPath(); // Arrête l'agent si la cible sort du rayon
         }
     }
+
 
     void OnDrawGizmosSelected()
     {
