@@ -18,31 +18,7 @@ public class IAennemi : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
-
-    /*void Update()
-    {
-        if (Vector3.Distance(transform.position, target.position) <= triggerRadius)
-        {
-            animator.SetBool("IsWalk", true);
-            if (Vector3.Distance(transform.position, target.position) <= 2f)
-            {
-                animator.SetBool("IsWalk", false);
-                jeu.SetActive(false);
-                menu.SetActive(true);
-                textgameover.SetActive(true);
-                //agent.ResetPath();
-                return;
-            }
-            agent.SetDestination(target.position);
-        }
-        else
-        {
-            animator.SetBool("IsWalk", false);
-            agent.ResetPath(); // Arrête l'agent si la cible sort du rayon
-            
-        }
-    }*/
-    
+   
     void Update()
     {
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
@@ -51,7 +27,6 @@ public class IAennemi : MonoBehaviour
         {
             agent.SetDestination(target.position);
 
-            // Active l'animation si l'agent se déplace
             if (agent.velocity.magnitude > 0.1f)
             {
                 animator.SetBool("IsWalk", true);
@@ -61,7 +36,6 @@ public class IAennemi : MonoBehaviour
                 animator.SetBool("IsWalk", false);
             }
 
-            // Vérifie si l'ennemi est proche du joueur (Game Over)
             if (distanceToTarget <= 2f)
             {
                 animator.SetBool("IsWalk", false);
@@ -73,15 +47,15 @@ public class IAennemi : MonoBehaviour
         }
         else
         {
-            animator.SetBool("IsWalk", false);
-            agent.ResetPath(); // Arrête l'agent si la cible sort du rayon
+			
+            //animator.SetBool("IsWalk", false);
+            //agent.ResetPath();
         }
     }
 
 
     void OnDrawGizmosSelected()
     {
-        // Dessine une sphère pour visualiser le rayon dans l'éditeur
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, triggerRadius);
     }
