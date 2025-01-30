@@ -47,9 +47,7 @@ public class IAennemi : MonoBehaviour
         }
         else
         {
-			
-            //animator.SetBool("IsWalk", false);
-            //agent.ResetPath();
+            agent.ResetPath();
         }
     }
 

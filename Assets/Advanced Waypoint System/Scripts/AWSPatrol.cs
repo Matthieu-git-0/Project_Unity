@@ -47,7 +47,18 @@ namespace Worq
         public float distanceFromGround = 0.5f;
 
         //Animations
-        [Space(10)]
+        [Space(10)] 
+        //[SerializeField] private IA_final poursuite;
+        [SerializeField] Transform target;
+        [SerializeField] float triggerRadius = 10f;
+        [Space]
+    
+        [SerializeField] GameObject jeu;
+        [SerializeField] GameObject menu;
+        [SerializeField] GameObject textgameover;
+        [SerializeField] Animator animator;
+        NavMeshAgent agent;
+        
         [Header("Animations")]
         [Space(10)]
         [Tooltip(
@@ -67,7 +78,7 @@ namespace Worq
 
         //private variables
         private AWSManager mAWSManager;
-        private NavMeshAgent agent;
+        //private NavMeshAgent agent;
         private Animation anim;
         private AudioSource src;
         private Transform[] patrolPoints;
@@ -120,8 +131,10 @@ namespace Worq
             }
         }
 
-        void Start()
+        public void Start()
         {
+            agent = GetComponent<NavMeshAgent>();
+            target = GameObject.FindGameObjectWithTag("Player").transform;
             anim = GetComponent<Animation>();
             if (anim == null)
                 anim = gameObject.AddComponent<Animation>();
@@ -164,47 +177,58 @@ namespace Worq
 
         void Update()
         {
-            if (resetPatrol || reset)
+            float distanceToTarget = Vector3.Distance(transform.position, target.position);
+            if (distanceToTarget <= triggerRadius)
             {
-                agent.isStopped = false;
-                goToNextPointDirect();
-                interruptPatrol = false;
-                resetPatrol = false;
-                reset = false;
-            }
+                agent.SetDestination(target.position);
 
-            if (interruptPatrol)
+                if (agent.velocity.magnitude > 0.1f)
+                {
+                    animator.SetBool("IsWalk", true);
+                }
+                else
+                {
+                    animator.SetBool("IsWalk", false);
+                }
+
+                if (distanceToTarget <= 2f)
+                {
+                    animator.SetBool("IsWalk", false);
+                    jeu.SetActive(false);
+                    menu.SetActive(true);
+                    textgameover.SetActive(true);
+                    return;
+                }
+            }
+            else 
             {
-                agent.isStopped = true;
-                if (null != idleAnimations)
-                    playAnimation(idleAnimations);
+                if (resetPatrol || reset)
+                {
+                    agent.isStopped = false;
+                    goToNextPointDirect();
+                    interruptPatrol = false;
+                    resetPatrol = false;
+                    reset = false;
+                }
+
+                if (interruptPatrol)
+                {
+                    agent.isStopped = true;
+                    if (null != idleAnimations)
+                        playAnimation(idleAnimations);
+                }
+
+                if (!interruptPatrol && !isWaiting && agent.remainingDistance <= stoppingDistance && null != group)
+                {
+                    animator.SetBool("IsWalk", false);
+                    GotoNextPoint();
+                }
+
+                agent.stoppingDistance = stoppingDistance;
+                agent.speed = this.moveSpeed;
+                agent.angularSpeed = angularSpeed;
+                agent.baseOffset = distanceFromGround;
             }
-
-            if (!interruptPatrol && !isWaiting && agent.remainingDistance <= stoppingDistance && null != group)
-            {
-                GotoNextPoint();
-            }
-//For future a release
-//			if (goTo != null && !hasReachedGoTo)
-//			{
-//				interruptPatrol = true;
-//				agent.SetDestination(goTo.position);
-//				if (walkAnimations != null)
-//					playAnimation (walkAnimations);
-//
-//				if (agent.remainingDistance <= stoppingDistance)
-//				{
-//					playAnimation (idleAnimations);
-//					hasReachedGoTo = true;
-//				}
-//			}
-
-            //updating variables
-
-            agent.stoppingDistance = stoppingDistance;
-            agent.speed = this.moveSpeed;
-            agent.angularSpeed = angularSpeed;
-            agent.baseOffset = distanceFromGround;
         }
 
         private void GotoNextPoint()
