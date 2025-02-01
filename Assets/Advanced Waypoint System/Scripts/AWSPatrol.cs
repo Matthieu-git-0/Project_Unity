@@ -88,6 +88,12 @@ namespace Worq
         private int waypointCount;
         private int destPoint;
 
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, triggerRadius);
+        }
+            
         void Awake()
         {
             mAWSManager = GameObject.FindObjectOfType<AWSManager>();
