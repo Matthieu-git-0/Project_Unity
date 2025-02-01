@@ -204,6 +204,7 @@ namespace Worq
             {
                 if (resetPatrol || reset)
                 {
+                    animator.SetBool("IsWalk", true);
                     agent.isStopped = false;
                     goToNextPointDirect();
                     interruptPatrol = false;
@@ -213,6 +214,7 @@ namespace Worq
 
                 if (interruptPatrol)
                 {
+                    animator.SetBool("IsWalk", false);
                     agent.isStopped = true;
                     if (null != idleAnimations)
                         playAnimation(idleAnimations);
@@ -220,9 +222,11 @@ namespace Worq
 
                 if (!interruptPatrol && !isWaiting && agent.remainingDistance <= stoppingDistance && null != group)
                 {
-                    animator.SetBool("IsWalk", false);
+                    animator.SetBool("IsWalk", true);
                     GotoNextPoint();
                 }
+                
+                animator.SetBool("IsWalk", true);
 
                 agent.stoppingDistance = stoppingDistance;
                 agent.speed = this.moveSpeed;
