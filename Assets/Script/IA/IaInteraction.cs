@@ -24,10 +24,29 @@ public class IaInteraction : MonoBehaviour
 		//direction.Normalize();
 
         Debug.DrawRay(origin, direction * viewDiastance, Color.green);
+        
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, viewDiastance, interactionLayer))
+        {
+	        switch (hit.collider.tag)
+	        {
+		        case "Interaction/Slice":
+			        hit.collider.GetComponent<InteractableDoor>().Open();
+			        break;
+		        case "Interaction/Door":
+			        hit.collider.GetComponent<InteractableDoor>().OpenForIa();
+			        break;
+		        default:
+			        break;
+	        }
+        }
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, viewDiastance, interactionLayer) && hit.collider.tag == "Interaction/Slice")
+        /*if (Physics.Raycast(origin, direction, out RaycastHit hit, viewDiastance, interactionLayer) && hit.collider.tag == "Interaction/Slice")
         {
 			hit.collider.GetComponent<InteractableDoor>().Open();
 		}
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, viewDiastance, interactionLayer) && hit.collider.tag == "Interaction/Door")
+        {
+	        hit.collider.GetComponent<InteractableDoor>().OpenForIa();
+        }*/
     }
 }	

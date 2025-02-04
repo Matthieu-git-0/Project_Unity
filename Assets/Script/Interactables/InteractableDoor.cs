@@ -23,6 +23,12 @@ public class InteractableDoor : MonoBehaviour
         animator.SetBool("isOpen", true);
         StartCoroutine(CloseAfterDelay(5f));
     }
+    
+    public void OpenForIa()
+    {
+        animator.SetBool("isOpen", true);
+        StartCoroutine(CloseAfterDelay(2f));
+    }
 
     private IEnumerator CloseAfterDelay(float delay)
     {
