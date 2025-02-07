@@ -6,7 +6,7 @@ public class CameraLookAtPoints : MonoBehaviour
     public Transform[] points;
     public float rotationSpeed = 2f;
     public float waitTime = 2f;
-    public AWSPatrol ia;
+    public IA ia;
     public float detectionRange = 10f;
     public float detectionAngle = 90f;
     public LayerMask detectionLayer;
