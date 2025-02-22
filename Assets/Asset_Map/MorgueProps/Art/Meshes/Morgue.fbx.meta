@@ -1,0 +1,733 @@
+fileFormatVersion: 2
+guid: 51af8488a013855408b96b5f72d77f5f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bed
+    100002: Bed 1
+    100004: Bed1
+    100006: Bed2
+    100008: Bodies_Container
+    100010: Body_Frigor
+    100012: BodyContainerDoor
+    100014: BodyContainerDoor1
+    100016: BodyContainerDoor10
+    100018: BodyContainerDoor11
+    100020: BodyContainerDoor2
+    100022: BodyContainerDoor3
+    100024: BodyContainerDoor4
+    100026: BodyContainerDoor5
+    100028: BodyContainerDoor6
+    100030: BodyContainerDoor7
+    100032: BodyContainerDoor8
+    100034: BodyContainerDoor9
+    100036: Car
+    100038: Car 1
+    100040: CarBase
+    100042: CarBase1
+    100044: CarBase2
+    100046: Cloth
+    100048: DisectionBed
+    100050: DisectionBedPipeline
+    100052: DissectionBed
+    100054: Door
+    100056: Door 1
+    100058: Door 10
+    100060: Door 11
+    100062: Door 2
+    100064: Door 3
+    100066: Door 4
+    100068: Door 5
+    100070: Door 6
+    100072: Door 7
+    100074: Door 8
+    100076: Door 9
+    100078: DoorHandler
+    100080: DoorHandler 1
+    100082: DoorHandler 10
+    100084: DoorHandler 11
+    100086: DoorHandler 2
+    100088: DoorHandler 3
+    100090: DoorHandler 4
+    100092: DoorHandler 5
+    100094: DoorHandler 6
+    100096: DoorHandler 7
+    100098: DoorHandler 8
+    100100: DoorHandler 9
+    100102: DoorVisagre
+    100104: DoorVisagre 1
+    100106: DoorVisagre 10
+    100108: DoorVisagre 11
+    100110: DoorVisagre 2
+    100112: DoorVisagre 3
+    100114: DoorVisagre 4
+    100116: DoorVisagre 5
+    100118: DoorVisagre 6
+    100120: DoorVisagre 7
+    100122: DoorVisagre 8
+    100124: DoorVisagre 9
+    100126: FrigorBed1
+    100128: FrigorBed10
+    100130: FrigorBed11
+    100132: FrigorBed12
+    100134: FrigorBed2
+    100136: FrigorBed3
+    100138: FrigorBed4
+    100140: FrigorBed5
+    100142: FrigorBed6
+    100144: FrigorBed7
+    100146: FrigorBed8
+    100148: FrigorBed9
+    100150: FrigorRiels
+    100152: Handler
+    100154: Handler 1
+    100156: Handler 2
+    100158: //RootNode
+    100160: Sink
+    100162: Sink 1
+    100164: Sinkfaucet1
+    100166: Sinkfaucet2
+    100168: SinkPipeline
+    100170: SinkPipeline1
+    100172: SinkSkelet
+    100174: Skelet
+    100176: SkeletBed2
+    100178: SkeletDisection
+    100180: transform20
+    100182: transform21
+    100184: Water
+    100186: Water 1
+    100188: Water 2
+    100190: Wheel1
+    100192: Wheel1 1
+    100194: Wheel1 10
+    100196: Wheel1 11
+    100198: Wheel1 2
+    100200: Wheel1 3
+    100202: Wheel1 4
+    100204: Wheel1 5
+    100206: Wheel1 6
+    100208: Wheel1 7
+    100210: Wheel1 8
+    100212: Wheel1 9
+    100214: Wheel10
+    100216: Wheel11
+    100218: Wheel12
+    100220: Wheel13
+    100222: Wheel2
+    100224: Wheel3
+    100226: Wheel4
+    100228: Wheel5
+    100230: Wheel6
+    100232: Wheel7
+    100234: Wheel8
+    100236: Wheel9
+    100238: WheelBase
+    100240: WheelBase 1
+    100242: WheelBase 10
+    100244: WheelBase 11
+    100246: WheelBase 2
+    100248: WheelBase 3
+    100250: WheelBase 4
+    100252: WheelBase 5
+    100254: WheelBase 6
+    100256: WheelBase 7
+    100258: WheelBase 8
+    100260: WheelBase 9
+    400000: Bed
+    400002: Bed 1
+    400004: Bed1
+    400006: Bed2
+    400008: Bodies_Container
+    400010: Body_Frigor
+    400012: BodyContainerDoor
+    400014: BodyContainerDoor1
+    400016: BodyContainerDoor10
+    400018: BodyContainerDoor11
+    400020: BodyContainerDoor2
+    400022: BodyContainerDoor3
+    400024: BodyContainerDoor4
+    400026: BodyContainerDoor5
+    400028: BodyContainerDoor6
+    400030: BodyContainerDoor7
+    400032: BodyContainerDoor8
+    400034: BodyContainerDoor9
+    400036: Car
+    400038: Car 1
+    400040: CarBase
+    400042: CarBase1
+    400044: CarBase2
+    400046: Cloth
+    400048: DisectionBed
+    400050: DisectionBedPipeline
+    400052: DissectionBed
+    400054: Door
+    400056: Door 1
+    400058: Door 10
+    400060: Door 11
+    400062: Door 2
+    400064: Door 3
+    400066: Door 4
+    400068: Door 5
+    400070: Door 6
+    400072: Door 7
+    400074: Door 8
+    400076: Door 9
+    400078: DoorHandler
+    400080: DoorHandler 1
+    400082: DoorHandler 10
+    400084: DoorHandler 11
+    400086: DoorHandler 2
+    400088: DoorHandler 3
+    400090: DoorHandler 4
+    400092: DoorHandler 5
+    400094: DoorHandler 6
+    400096: DoorHandler 7
+    400098: DoorHandler 8
+    400100: DoorHandler 9
+    400102: DoorVisagre
+    400104: DoorVisagre 1
+    400106: DoorVisagre 10
+    400108: DoorVisagre 11
+    400110: DoorVisagre 2
+    400112: DoorVisagre 3
+    400114: DoorVisagre 4
+    400116: DoorVisagre 5
+    400118: DoorVisagre 6
+    400120: DoorVisagre 7
+    400122: DoorVisagre 8
+    400124: DoorVisagre 9
+    400126: FrigorBed1
+    400128: FrigorBed10
+    400130: FrigorBed11
+    400132: FrigorBed12
+    400134: FrigorBed2
+    400136: FrigorBed3
+    400138: FrigorBed4
+    400140: FrigorBed5
+    400142: FrigorBed6
+    400144: FrigorBed7
+    400146: FrigorBed8
+    400148: FrigorBed9
+    400150: FrigorRiels
+    400152: Handler
+    400154: Handler 1
+    400156: Handler 2
+    400158: //RootNode
+    400160: Sink
+    400162: Sink 1
+    400164: Sinkfaucet1
+    400166: Sinkfaucet2
+    400168: SinkPipeline
+    400170: SinkPipeline1
+    400172: SinkSkelet
+    400174: Skelet
+    400176: SkeletBed2
+    400178: SkeletDisection
+    400180: transform20
+    400182: transform21
+    400184: Water
+    400186: Water 1
+    400188: Water 2
+    400190: Wheel1
+    400192: Wheel1 1
+    400194: Wheel1 10
+    400196: Wheel1 11
+    400198: Wheel1 2
+    400200: Wheel1 3
+    400202: Wheel1 4
+    400204: Wheel1 5
+    400206: Wheel1 6
+    400208: Wheel1 7
+    400210: Wheel1 8
+    400212: Wheel1 9
+    400214: Wheel10
+    400216: Wheel11
+    400218: Wheel12
+    400220: Wheel13
+    400222: Wheel2
+    400224: Wheel3
+    400226: Wheel4
+    400228: Wheel5
+    400230: Wheel6
+    400232: Wheel7
+    400234: Wheel8
+    400236: Wheel9
+    400238: WheelBase
+    400240: WheelBase 1
+    400242: WheelBase 10
+    400244: WheelBase 11
+    400246: WheelBase 2
+    400248: WheelBase 3
+    400250: WheelBase 4
+    400252: WheelBase 5
+    400254: WheelBase 6
+    400256: WheelBase 7
+    400258: WheelBase 8
+    400260: WheelBase 9
+    2300000: Bed 1
+    2300002: Bed1
+    2300004: Body_Frigor
+    2300006: Car 1
+    2300008: CarBase
+    2300010: CarBase1
+    2300012: CarBase2
+    2300014: Cloth
+    2300016: DisectionBed
+    2300018: DisectionBedPipeline
+    2300020: Door
+    2300022: Door 1
+    2300024: Door 10
+    2300026: Door 11
+    2300028: Door 2
+    2300030: Door 3
+    2300032: Door 4
+    2300034: Door 5
+    2300036: Door 6
+    2300038: Door 7
+    2300040: Door 8
+    2300042: Door 9
+    2300044: DoorHandler
+    2300046: DoorHandler 1
+    2300048: DoorHandler 10
+    2300050: DoorHandler 11
+    2300052: DoorHandler 2
+    2300054: DoorHandler 3
+    2300056: DoorHandler 4
+    2300058: DoorHandler 5
+    2300060: DoorHandler 6
+    2300062: DoorHandler 7
+    2300064: DoorHandler 8
+    2300066: DoorHandler 9
+    2300068: DoorVisagre
+    2300070: DoorVisagre 1
+    2300072: DoorVisagre 10
+    2300074: DoorVisagre 11
+    2300076: DoorVisagre 2
+    2300078: DoorVisagre 3
+    2300080: DoorVisagre 4
+    2300082: DoorVisagre 5
+    2300084: DoorVisagre 6
+    2300086: DoorVisagre 7
+    2300088: DoorVisagre 8
+    2300090: DoorVisagre 9
+    2300092: FrigorBed1
+    2300094: FrigorBed10
+    2300096: FrigorBed11
+    2300098: FrigorBed12
+    2300100: FrigorBed2
+    2300102: FrigorBed3
+    2300104: FrigorBed4
+    2300106: FrigorBed5
+    2300108: FrigorBed6
+    2300110: FrigorBed7
+    2300112: FrigorBed8
+    2300114: FrigorBed9
+    2300116: FrigorRiels
+    2300118: Handler
+    2300120: Handler 1
+    2300122: Handler 2
+    2300124: Sink 1
+    2300126: SinkPipeline
+    2300128: SinkPipeline1
+    2300130: SinkSkelet
+    2300132: Skelet
+    2300134: SkeletBed2
+    2300136: SkeletDisection
+    2300138: Water
+    2300140: Water 1
+    2300142: Water 2
+    2300144: Wheel1
+    2300146: Wheel1 1
+    2300148: Wheel1 10
+    2300150: Wheel1 11
+    2300152: Wheel1 2
+    2300154: Wheel1 3
+    2300156: Wheel1 4
+    2300158: Wheel1 5
+    2300160: Wheel1 6
+    2300162: Wheel1 7
+    2300164: Wheel1 8
+    2300166: Wheel1 9
+    2300168: WheelBase
+    2300170: WheelBase 1
+    2300172: WheelBase 10
+    2300174: WheelBase 11
+    2300176: WheelBase 2
+    2300178: WheelBase 3
+    2300180: WheelBase 4
+    2300182: WheelBase 5
+    2300184: WheelBase 6
+    2300186: WheelBase 7
+    2300188: WheelBase 8
+    2300190: WheelBase 9
+    3300000: Bed 1
+    3300002: Bed1
+    3300004: Body_Frigor
+    3300006: Car 1
+    3300008: CarBase
+    3300010: CarBase1
+    3300012: CarBase2
+    3300014: Cloth
+    3300016: DisectionBed
+    3300018: DisectionBedPipeline
+    3300020: Door
+    3300022: Door 1
+    3300024: Door 10
+    3300026: Door 11
+    3300028: Door 2
+    3300030: Door 3
+    3300032: Door 4
+    3300034: Door 5
+    3300036: Door 6
+    3300038: Door 7
+    3300040: Door 8
+    3300042: Door 9
+    3300044: DoorHandler
+    3300046: DoorHandler 1
+    3300048: DoorHandler 10
+    3300050: DoorHandler 11
+    3300052: DoorHandler 2
+    3300054: DoorHandler 3
+    3300056: DoorHandler 4
+    3300058: DoorHandler 5
+    3300060: DoorHandler 6
+    3300062: DoorHandler 7
+    3300064: DoorHandler 8
+    3300066: DoorHandler 9
+    3300068: DoorVisagre
+    3300070: DoorVisagre 1
+    3300072: DoorVisagre 10
+    3300074: DoorVisagre 11
+    3300076: DoorVisagre 2
+    3300078: DoorVisagre 3
+    3300080: DoorVisagre 4
+    3300082: DoorVisagre 5
+    3300084: DoorVisagre 6
+    3300086: DoorVisagre 7
+    3300088: DoorVisagre 8
+    3300090: DoorVisagre 9
+    3300092: FrigorBed1
+    3300094: FrigorBed10
+    3300096: FrigorBed11
+    3300098: FrigorBed12
+    3300100: FrigorBed2
+    3300102: FrigorBed3
+    3300104: FrigorBed4
+    3300106: FrigorBed5
+    3300108: FrigorBed6
+    3300110: FrigorBed7
+    3300112: FrigorBed8
+    3300114: FrigorBed9
+    3300116: FrigorRiels
+    3300118: Handler
+    3300120: Handler 1
+    3300122: Handler 2
+    3300124: Sink 1
+    3300126: SinkPipeline
+    3300128: SinkPipeline1
+    3300130: SinkSkelet
+    3300132: Skelet
+    3300134: SkeletBed2
+    3300136: SkeletDisection
+    3300138: Water
+    3300140: Water 1
+    3300142: Water 2
+    3300144: Wheel1
+    3300146: Wheel1 1
+    3300148: Wheel1 10
+    3300150: Wheel1 11
+    3300152: Wheel1 2
+    3300154: Wheel1 3
+    3300156: Wheel1 4
+    3300158: Wheel1 5
+    3300160: Wheel1 6
+    3300162: Wheel1 7
+    3300164: Wheel1 8
+    3300166: Wheel1 9
+    3300168: WheelBase
+    3300170: WheelBase 1
+    3300172: WheelBase 10
+    3300174: WheelBase 11
+    3300176: WheelBase 2
+    3300178: WheelBase 3
+    3300180: WheelBase 4
+    3300182: WheelBase 5
+    3300184: WheelBase 6
+    3300186: WheelBase 7
+    3300188: WheelBase 8
+    3300190: WheelBase 9
+    4300000: Cloth
+    4300002: FrigorRiels
+    4300004: Body_Frigor
+    4300006: DoorVisagre
+    4300008: Door
+    4300010: DoorHandler
+    4300012: DoorVisagre
+    4300014: Door
+    4300016: DoorHandler
+    4300018: DoorVisagre
+    4300020: Door
+    4300022: DoorHandler
+    4300024: DoorVisagre
+    4300026: Door
+    4300028: DoorHandler
+    4300030: DoorVisagre
+    4300032: Door
+    4300034: DoorHandler
+    4300036: DoorVisagre
+    4300038: Door
+    4300040: DoorHandler
+    4300042: DoorVisagre
+    4300044: Door
+    4300046: DoorHandler
+    4300048: DoorVisagre
+    4300050: Door
+    4300052: DoorHandler
+    4300054: DoorVisagre
+    4300056: Door
+    4300058: DoorHandler
+    4300060: DoorVisagre
+    4300062: Door
+    4300064: DoorHandler
+    4300066: DoorVisagre
+    4300068: Door
+    4300070: DoorHandler
+    4300072: DoorVisagre
+    4300074: Door
+    4300076: DoorHandler
+    4300078: FrigorBed12
+    4300080: FrigorBed11
+    4300082: FrigorBed10
+    4300084: FrigorBed9
+    4300086: FrigorBed8
+    4300088: FrigorBed7
+    4300090: FrigorBed6
+    4300092: FrigorBed5
+    4300094: FrigorBed4
+    4300096: FrigorBed3
+    4300098: FrigorBed2
+    4300100: FrigorBed1
+    4300102: SkeletDisection
+    4300104: DisectionBedPipeline
+    4300106: DisectionBed
+    4300108: Handler
+    4300110: Water
+    4300112: Bed
+    4300114: Skelet
+    4300116: WheelBase
+    4300118: Wheel1
+    4300120: WheelBase
+    4300122: Wheel1
+    4300124: WheelBase
+    4300126: Wheel1
+    4300128: WheelBase
+    4300130: Wheel1
+    4300132: Bed1
+    4300134: SkeletBed2
+    4300136: WheelBase
+    4300138: Wheel1
+    4300140: WheelBase
+    4300142: Wheel1
+    4300144: WheelBase
+    4300146: Wheel1
+    4300148: WheelBase
+    4300150: Wheel1
+    4300152: CarBase2
+    4300154: CarBase
+    4300156: CarBase1
+    4300158: Car
+    4300160: WheelBase
+    4300162: Wheel1
+    4300164: WheelBase
+    4300166: Wheel1
+    4300168: WheelBase
+    4300170: Wheel1
+    4300172: WheelBase
+    4300174: Wheel1
+    4300176: Sink
+    4300178: SinkSkelet
+    4300180: SinkPipeline
+    4300182: SinkPipeline1
+    4300184: Handler
+    4300186: Water
+    4300188: Handler
+    4300190: Water
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BedMetal
+    second: {fileID: 2100000, guid: f305f5e629b688743880100d19a0112d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CarSection
+    second: {fileID: 2100000, guid: b7fee361fccab3e4a8e370adb98de15c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cloth1
+    second: {fileID: 2100000, guid: ff324e88074eae640a3b7e1001410ff5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DisectionBedTable
+    second: {fileID: 2100000, guid: fe357e8584596fb46b28dd940fb96c36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frigor
+    second: {fileID: 2100000, guid: 40322fb7bea87b140a10314d0af574fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrigorBed
+    second: {fileID: 2100000, guid: 86998fbd3ade0b944a96904fe33645d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrigorDoor
+    second: {fileID: 2100000, guid: fdc2ae894569c96449105e92bf580918, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrigorDoorHandle
+    second: {fileID: 2100000, guid: f532dd09fc18ba64fb1f66eb75ec6cc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrigorDoorVisagre
+    second: {fileID: 2100000, guid: ed1e8dacccabc21459ed9e20d5faa729, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrigorRiel
+    second: {fileID: 2100000, guid: 7612887f4d13b97468bc04e35ddb5625, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pipeline
+    second: {fileID: 2100000, guid: 0b8cada82d4998242ac71b4403e41d79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sink1
+    second: {fileID: 2100000, guid: 2634a596928484e41ad62fa87b131779, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SinkHandler
+    second: {fileID: 2100000, guid: 89115fd12f0d86c49a9b84ba8b1a2d43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SinkWater
+    second: {fileID: 2100000, guid: a99316d0c209502439f52631c45d898f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skelet1
+    second: {fileID: 2100000, guid: 04458717707c9f84da7013b0751da97a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheel
+    second: {fileID: 2100000, guid: f60d0458db8fd304b8b199af3446e3fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelBase1
+    second: {fileID: 2100000, guid: 26baf9a88c0f705418bc1876445dbbcb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 54b9197d59b154049b41450bbc7a043d, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
