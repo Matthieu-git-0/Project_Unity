@@ -11,13 +11,11 @@ namespace Worq
     [RequireComponent(typeof(Animation))]
     public class IA : MonoBehaviour
     {
-        //group settings
         [Header("Group")] 
         [Space(10)]
         public WaypointRoute group;
         [HideInInspector] public int groupID = 0;
-
-        //patrol settings
+        
         [Header("Patrol")] [Space(10)] [Tooltip("Minimum amount of time to wait before moving to next patrol point")]
         public float minPatrolWaitTime = 1f;
 
@@ -26,8 +24,7 @@ namespace Worq
 
         [Tooltip("If or not all entities patrol waypoints at random or in sequence")]
         public bool randomPatroler = false;
-
-        //NavMesh Agent settings
+        
         [Space(10)] [Header("Agent")] [Space(10)] [Tooltip("Speed by which the NavMesh agent moves")]
         public float moveSpeed = 3f;
 
@@ -44,20 +41,19 @@ namespace Worq
         [SerializeField] float triggerRadius = 10f;
         [Space]
     
-        [SerializeField] GameObject jeu;
-        [SerializeField] GameObject menu;
-        [SerializeField] GameObject textgameover;
+        [SerializeField] private GameObject image;
+        [SerializeField] private GameObject menubackground;
+        [SerializeField] private GameObject menuprincipale;
+        [SerializeField] private GameObject textgameover;
         [SerializeField] Animator animator;
         NavMeshAgent agent;
-
-        //Debug
+        
         [Space(10)] [Header("Debug")] [Space(10)]
         public bool resetPatrol;
 
         public bool interruptPatrol;
         public static bool reset;
-
-        //private variables
+        
         private AWSManager mAWSManager;
         private Animation anim;
         private AudioSource src;
@@ -128,27 +124,6 @@ namespace Worq
             agent.angularSpeed = angularSpeed;
             agent.baseOffset = distanceFromGround;
 
-            /*string newName;
-            if (idleAnimations != null && idleAnimations.Length > 0)
-                         {
-                for (int i = 0; i < idleAnimations.Length; i += 1)
-                {
-                    newName = idleAnimations[i].name;
-                    idleAnimations[i].legacy = true;
-                    anim.AddClip(idleAnimations[i], newName);
-                }
-            }
-
-            if (walkAnimations != null && walkAnimations.Length > 0)
-            {
-                for (var i = 0; i < walkAnimations.Length; i += 1)
-                {
-                    newName = walkAnimations[i].name;
-                    walkAnimations[i].legacy = true;
-                    anim.AddClip(walkAnimations[i], newName);
-                }
-            }*/
-
             try
             {
                 GotoNextPoint();
@@ -177,8 +152,9 @@ namespace Worq
                 if (distanceToTarget <= 2f)
                 {
                     animator.SetBool("IsWalk", false);
-                    jeu.SetActive(false);
-                    menu.SetActive(true);
+                    image.SetActive(false);
+                    menuprincipale.SetActive(true);
+                    menubackground.SetActive(true);
                     textgameover.SetActive(true);
                     return;
                 }

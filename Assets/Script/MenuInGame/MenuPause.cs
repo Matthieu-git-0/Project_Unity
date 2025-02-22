@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuPause : MonoBehaviour
 {
-    [SerializeField] private GameObject jeu;
-    [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject image;
+    [SerializeField] private GameObject menubackground;
+    [SerializeField] private GameObject gameover;
+    [SerializeField] private GameObject menuprincipale;
     private bool isPaused = false;
 
     void Update()
@@ -20,9 +22,10 @@ public class MenuPause : MonoBehaviour
     public void TogglePause()
     {
         isPaused = !isPaused;
-
-        jeu.SetActive(!isPaused);
-        menu.SetActive(isPaused);
+        
+        image.SetActive(!isPaused);
+        menubackground.SetActive(isPaused);
+        menuprincipale.SetActive(isPaused);
 
         Cursor.visible = isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
