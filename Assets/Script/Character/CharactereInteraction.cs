@@ -40,12 +40,18 @@ public class CharacterInteraction : MonoBehaviour
                 case "Interaction/Slice":
                     InteractionDoor_Slice(hit);
                     break;
+                
                 case "Interaction/Drawer":
                     InteractionDrawer(hit);
                     break;
+                
                 case "Interaction/Key":
                     InteractionKey(hit);
 					break;
+                
+                case "Interaction/Wardrobe":
+                    InteractionWardrobe(hit);
+                    break;
 
                 default:
                     //Debug.Log("Objet non interactif touché.");
@@ -119,6 +125,23 @@ public class CharacterInteraction : MonoBehaviour
             else
             {
                 Debug.LogError("Le script InteractableDoor est manquant.", hit.collider);
+            }
+        }
+    }
+    
+    private void InteractionWardrobe(RaycastHit hit)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            InteractableWardrobe wardrobe = hit.collider.GetComponent<InteractableWardrobe>();
+
+            if (wardrobe != null)
+            {
+                wardrobe.Interact();
+            }
+            else
+            {
+                Debug.LogError("Le script InteractableWardrobe est manquant.", hit.collider);
             }
         }
     }

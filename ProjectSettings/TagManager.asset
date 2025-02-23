@@ -8,6 +8,7 @@ TagManager:
   - Interaction/Slice
   - Interaction/Drawer
   - Interaction/Key
+  - Interaction/Wardrobe
   layers:
   - Default
   - TransparentFX
