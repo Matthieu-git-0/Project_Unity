@@ -52,6 +52,10 @@ public class CharacterInteraction : MonoBehaviour
                 case "Interaction/Wardrobe":
                     InteractionWardrobe(hit);
                     break;
+                
+                case "Interaction/BodiesContainer":
+                    InteractionBodiesContainer(hit);
+                    break;
 
                 default:
                     //Debug.Log("Objet non interactif touché.");
@@ -142,6 +146,23 @@ public class CharacterInteraction : MonoBehaviour
             else
             {
                 Debug.LogError("Le script InteractableWardrobe est manquant.", hit.collider);
+            }
+        }
+    }
+    
+    private void InteractionBodiesContainer(RaycastHit hit)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            InteractableBodiesContainer bodiesContainer = hit.collider.GetComponent<InteractableBodiesContainer>();
+
+            if (bodiesContainer != null)
+            {
+                bodiesContainer.Interact();
+            }
+            else
+            {
+                Debug.LogError("Le script InteractableBodiesContainer est manquant.", hit.collider);
             }
         }
     }

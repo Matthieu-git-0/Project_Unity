@@ -7,10 +7,10 @@ public class InteractableDrawer : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private bool isOpen = false;
 
-    public void Start()
+    /*public void Start()
     {
         animator.SetBool("isOpen", isOpen);
-    }
+    }*/
 
     public void Interact()
     {

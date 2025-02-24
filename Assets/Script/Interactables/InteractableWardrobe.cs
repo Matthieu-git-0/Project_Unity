@@ -7,10 +7,10 @@ public class InteractableWardrobe : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private bool isOpen = false;
 
-    /*public void Start()
+    public void Start()
     {
-        animator.SetBool("isOpen", isOpen);
-    }*/
+        animator.SetBool("isOpen", true);
+    }
 
     public void Interact()
     {

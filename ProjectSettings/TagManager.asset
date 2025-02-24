@@ -9,6 +9,7 @@ TagManager:
   - Interaction/Drawer
   - Interaction/Key
   - Interaction/Wardrobe
+  - Interaction/BodiesContainer
   layers:
   - Default
   - TransparentFX
