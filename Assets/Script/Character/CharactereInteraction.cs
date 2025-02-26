@@ -6,22 +6,6 @@ public class CharacterInteraction : MonoBehaviour
     [SerializeField] private float interactionDistance = 5.0f;
     [SerializeField] private LayerMask interactionLayer;
 
-    private void Start()
-    {
-        if (interactionLayer.value == 0)
-        {
-            interactionLayer = LayerMask.GetMask("Interactable");
-        }
-        
-        /*for (int i = 0; i < 32; i++)
-        {
-            if ((interactionLayer.value & (1 << i)) != 0)
-            {
-                Debug.Log($"Couche active dans le LayerMask : {LayerMask.LayerToName(i)}");
-            }
-        }*/
-    }
-
     private void Update()
     {
         Vector3 origin = playerCamera.transform.position;
@@ -152,6 +136,7 @@ public class CharacterInteraction : MonoBehaviour
     
     private void InteractionBodiesContainer(RaycastHit hit)
     {
+        //Debug.Log("knjbhvgcf");
         if (Input.GetKeyDown(KeyCode.E))
         {
             InteractableBodiesContainer bodiesContainer = hit.collider.GetComponent<InteractableBodiesContainer>();
