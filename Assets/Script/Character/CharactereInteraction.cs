@@ -11,7 +11,7 @@ public class CharacterInteraction : MonoBehaviour
         Vector3 origin = playerCamera.transform.position;
         Vector3 direction = playerCamera.transform.forward;
 
-        Debug.DrawRay(origin, direction * interactionDistance, Color.green);
+        //Debug.DrawRay(origin, direction * interactionDistance, Color.green);
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, interactionDistance, interactionLayer))
         {
@@ -50,7 +50,7 @@ public class CharacterInteraction : MonoBehaviour
 
 	private void InteractionKey(RaycastHit hit)
     {
-		Debug.Log("touche");
+		//Debug.Log("touche");
         if (Input.GetKeyDown(KeyCode.E))
         {
             InteractableKey key = hit.collider.GetComponent<InteractableKey>();
