@@ -454,7 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingSlider: {fileID: 1149246460}
   loadingText: {fileID: 1776218856}
-  simulatedLoadDuration: 1
+  simulatedLoadDuration: 5
 --- !u!4 &1451458605
 Transform:
   m_ObjectHideFlags: 0
