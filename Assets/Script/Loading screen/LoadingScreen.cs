@@ -17,7 +17,7 @@ public class LoadingScreen : MonoBehaviour
 
     IEnumerator LoadAsyncScene()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Map_Solo");
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Map");
         operation.allowSceneActivation = false;
 
         float simulatedProgress = 0f;
@@ -43,6 +43,11 @@ public class LoadingScreen : MonoBehaviour
             }
 
             yield return null;
+        }
+        
+        if (Input.anyKeyDown)
+        {
+            operation.allowSceneActivation = true;
         }
     }
 }

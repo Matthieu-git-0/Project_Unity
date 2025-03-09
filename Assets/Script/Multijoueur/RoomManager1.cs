@@ -3,12 +3,14 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public TMP_InputField roomCodeInput;
     public TMP_Text statusText;
-
+    //private AsyncOperation asyncLoad;
     public GameObject playerPrefab;
     
     public void Start()
@@ -16,14 +18,20 @@ public class RoomManager : MonoBehaviourPunCallbacks
         statusText.text = "Connecting...";
         Debug.Log("Connecting...");
 
+        //PreloadScene("Map");
+
         if (!PhotonNetwork.IsConnected)
         {
             statusText.text = "Connexion à Photon en cours...";
-            //Debug.LogWarning("Le client n'est pas encore prêt. Veuillez attendre la connexion au Master Server.");
             PhotonNetwork.ConnectUsingSettings();
-            //return;
         }
     }
+    
+    /*public void PreloadScene(string sceneName)
+    {
+        asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        asyncLoad.allowSceneActivation = false;
+    }*/
     
     public override void OnConnectedToMaster()
     {
@@ -31,8 +39,38 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("Connected");
         PhotonNetwork.JoinLobby();
     }
+    
+    public void JoinCreateRoomSolo()
+    {
+        if (!PhotonNetwork.IsConnectedAndReady)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+            return;
+        }
+        
+        Debug.Log("We are in the Lobby");
 
-    public void JoinCreateRoom()
+        string roomCode = Random.Range(100000, 999999).ToString();
+
+        RoomOptions roomOptions = new RoomOptions
+        {
+            MaxPlayers = 1,
+            IsVisible = true,
+            IsOpen = true
+        };
+
+        TypedLobby typedLobby = new TypedLobby("DefaultLobby", LobbyType.Default);
+
+        PhotonNetwork.JoinOrCreateRoom(roomCode, roomOptions, typedLobby);
+    }
+    
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        Debug.LogWarning($"Failed to join room: {message}");
+        JoinCreateRoomSolo();
+    }
+
+    public void JoinCreateRoomMulti()
     {
         if (!PhotonNetwork.IsConnectedAndReady)
         {
@@ -67,6 +105,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("Map_Multi");
+        //asyncLoad.allowSceneActivation = true;
+        SceneManager.LoadSceneAsync("ChargementScene");
     }
 }

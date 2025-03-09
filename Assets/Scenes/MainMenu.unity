@@ -5034,7 +5034,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1528498542}
         m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
-        m_MethodName: JoinCreateRoom
+        m_MethodName: JoinCreateRoomMulti
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7022,9 +7022,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1528498540}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: NewGameDialogYes
+      - m_Target: {fileID: 1528498542}
+        m_TargetAssemblyTypeName: RoomManager, Assembly-CSharp
+        m_MethodName: JoinCreateRoomSolo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

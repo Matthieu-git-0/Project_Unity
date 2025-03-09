@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8391487811451259974}
   - component: {fileID: 7554739364193958418}
   - component: {fileID: 2141979655254022248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 2503789813601456654}
   - component: {fileID: 2526083209212796859}
   - component: {fileID: 3417217595776041030}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player_solo
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ MonoBehaviour:
   interactionDistance: 5
   interactionLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &1408993731811644487
 MonoBehaviour:
   m_ObjectHideFlags: 0
