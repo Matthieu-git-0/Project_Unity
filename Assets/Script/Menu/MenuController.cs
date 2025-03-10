@@ -24,9 +24,6 @@ public class MenuController: MonoBehaviour
     [SerializeField] private float defaultSensX = 100f;
     public float mainControllerSensX = 100f;
     
-    [Header("Toggle Settings")]
-    [SerializeField] private Toggle invertYToggle = null;
-    
     [Header("Graphics Settings")]
     
     [SerializeField] private Slider brightnessSlider;
@@ -39,7 +36,6 @@ public class MenuController: MonoBehaviour
     
     private int _qualityLevel;
     private bool _isFullScreen;
-    public Button mybuttton;
     
     [Header("Confirmation")]
     [SerializeField] public GameObject confirmationPrompt = null;
@@ -53,17 +49,11 @@ public class MenuController: MonoBehaviour
         SceneManager.LoadScene(_newGameLevel);
     }
     
-    //
     private void Start()
     {
-        // Initialiser les résolutions disponibles
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
-        //StartCoroutine(LoadAsyncScene());
-
-
-        // Ajouter les options au Dropdown de résolution
         foreach (Resolution res in resolutions)
         {
             resolutionDropdown.options.Add(new TMP_Dropdown.OptionData($"{res.width}x{res.height}"));
@@ -120,7 +110,6 @@ public class MenuController: MonoBehaviour
         Debug.Log("Niveau de qualité changé en : " + QualitySettings.names[index]);
     }
 
-    // Boutons : Appliquer et Réinitialiser
     public void ApplySettings()
     {
         StartCoroutine(ConfirmationBox());
@@ -129,7 +118,6 @@ public class MenuController: MonoBehaviour
 
     public void ResetToDefault()
     {
-        //Debug.Log("Réinitialisation des paramètres !");
         InitializeSettings();
     }
 
@@ -189,7 +177,6 @@ public class MenuController: MonoBehaviour
 			controllerSensSliderY.value = defaultSensY;
             mainControllerSensY = defaultSensY;
             controllerSensTextValueY.text = defaultSensY.ToString("0");
-            //invertYToggle.isOn = false;
             GamePlayApply();
         }
     }
