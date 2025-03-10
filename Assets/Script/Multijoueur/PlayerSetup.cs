@@ -15,6 +15,6 @@ public class PlayerSetup : MonoBehaviour
         cameraRotation.enabled = true;
         movement.enabled = true;
         Interaction.enabled = true;
-        playerCamera.gameObject.SetActive(true); // Désactive l'objet caméra
+        playerCamera.gameObject.SetActive(true);
     }
 }

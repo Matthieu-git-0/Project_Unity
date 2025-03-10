@@ -7,9 +7,13 @@ using TMPro;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class PlayerScript : MonoBehaviour, IPunObservable
+public class PlayerScript : MonoBehaviour//, IPunObservable
 {
-	[Header("NUMERICAL PARAMETERS")]
+	void Start()
+	{
+		Debug.Log("tegs");
+	}
+	/*[Header("NUMERICAL PARAMETERS")]
 	public float walkSpeed = 1.2f;
 	public float runSpeed = 2.0f;
 	public float jumpSpeed = 5.0f;
@@ -33,20 +37,20 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 	[Header("ELEMENTS")]
 	public Camera playerCamera;
 	public GameObject character;
-	public Animator animator;
+	//public Animator animator;
 
 	[Header("MENUS")]
-	public GameObject pauseObject;
-    private float animatorSides;
-    private float animatorFrontBack;
-	private bool animatorIsRunning;
-	private bool animatorIsJumping;
-	
+	//public GameObject pauseObject;
+    //private float animatorSides;
+    //private float animatorFrontBack;
+    //private bool animatorIsRunning;
+    //private bool animatorIsJumping;
+
 	private PhotonView view;
 
 	private bool canMove = true;
 
-	public GameObject guiDoorMenu;
+	//public GameObject guiDoorMenu;
 
 	CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -64,7 +68,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 		// Blocage et disparition du curseur
 		Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        
+
         pauseObject.SetActive(false);
     }
 
@@ -72,16 +76,16 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     {
 		// Test s'appliquant uniquement pour le joueur local
         if (view.IsMine)
-        {		
+        {
 	        string interactKey = PlayerPrefs.GetString("Interact", "None");
 	        guiDoorMenu.GetComponent<TMP_Text>().text = $"Press \"{interactKey}\" to interact";
-	        
+
             // Vérification si le joueur est autorisé à bouger
-        	if (canMove && Cursor.lockState == CursorLockMode.Locked)
-        	{
-				MovePlayer();																							
+	        if (canMove && Cursor.lockState == CursorLockMode.Locked)
+	        {
+				MovePlayer();
 				MoveCamera();
-        	}
+	        }
 	        else // Sinon Update des paramètres de pause
 	        {
 		        UdpateSensitivityCamera();
@@ -93,10 +97,10 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 		else
 		{
 			// Application des paramètres synchronisés pour les autres joueurs
-            animator.SetFloat("Sides", animatorSides);
-            animator.SetFloat("Front/Back", animatorFrontBack);
-			animator.SetBool("isRunning", animatorIsRunning);
-			animator.SetBool("isJumping", animatorIsJumping);
+            //animator.SetFloat("Sides", animatorSides);
+            //animator.SetFloat("Front/Back", animatorFrontBack);
+			//animator.SetBool("isRunning", animatorIsRunning);
+			//animator.SetBool("isJumping", animatorIsJumping);
 		}
 
     }
@@ -106,48 +110,48 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
             // Envoie des paramètres de l'Animator locaux aux autres joueurs
-			stream.SendNext(animatorSides);
-            stream.SendNext(animatorFrontBack);
-			stream.SendNext(animatorIsRunning);
-			stream.SendNext(animatorIsJumping);
+            //stream.SendNext(animatorSides);
+            //stream.SendNext(animatorFrontBack);
+            //stream.SendNext(animatorIsRunning);
+            //stream.SendNext(animatorIsJumping);
         }
         else
         {
             // Reception des paramètres de l'Animator depuis le serveur
-            animatorSides = (float)stream.ReceiveNext();
-            animatorFrontBack = (float)stream.ReceiveNext();
-			animatorIsRunning = (bool)stream.ReceiveNext();
-			animatorIsJumping = (bool)stream.ReceiveNext();
-			
+            //animatorSides = (float)stream.ReceiveNext();
+            //animatorFrontBack = (float)stream.ReceiveNext();
+            //animatorIsRunning = (bool)stream.ReceiveNext();
+			//animatorIsJumping = (bool)stream.ReceiveNext();
+
 			// Appliquer ces paramètres à l'Animator local
-        	animator.SetFloat("Sides", animatorSides);
-        	animator.SetFloat("Front/Back", animatorFrontBack);
-			animator.SetBool("isRunning", animatorIsRunning);
-			animator.SetBool("isJumping", animatorIsJumping);
+	        //animator.SetFloat("Sides", animatorSides);
+	        //animator.SetFloat("Front/Back", animatorFrontBack);
+			//animator.SetBool("isRunning", animatorIsRunning);
+			//animator.SetBool("isJumping", animatorIsJumping);
         }
     }
 
 	private void CheckPauseActivation()
 	{
-		if (Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Pause", "None"))))
+		/*if (Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Pause", "None"))))
 	    {
-		    pauseObject.SetActive(true);
+		    //pauseObject.SetActive(true);
 		    Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 	    }
 
 		if (Cursor.lockState == CursorLockMode.None && Cursor.visible)
 	    {
-			pauseObject.SetActive(true);
+		    //pauseObject.SetActive(true);
 	    }
 	    else
 	    {
-			pauseObject.SetActive(false);
-	    }
-	}
+		    //pauseObject.SetActive(false);
+	    }*/
+	/////}
 	
 	// Update des sensibilités de rotation camera
-	private void UdpateSensitivityCamera()
+	/*private void UdpateSensitivityCamera()
 	{
 		lookSensitivityX = 2f * PlayerPrefs.GetFloat("sensitivityX", 2f);
 		lookSensitivityY = 2f * PlayerPrefs.GetFloat("sensitivityY", 2f);
@@ -169,7 +173,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         Vector3 direction = Vector3.zero;
 		
 		// Touches de déplacement
-		string forwardKey = PlayerPrefs.GetString("Forward", "None");
+		/*string forwardKey = PlayerPrefs.GetString("Forward", "None");
     	string backwardKey = PlayerPrefs.GetString("Backward", "None");
     	string leftKey = PlayerPrefs.GetString("Left", "None");
     	string rightKey = PlayerPrefs.GetString("Right", "None");
@@ -282,5 +286,5 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         animatorSides = moveX;
         animatorFrontBack = moveY;
         animatorIsRunning = isRunning;
-	}
+	}*/
 }
