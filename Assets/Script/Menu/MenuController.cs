@@ -11,14 +11,18 @@ public class MenuController: MonoBehaviour
     [Header("Volume Settings")] 
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
-    [SerializeField] private float defaultVolume = 100f;
+    [SerializeField] private float defaultVolume = 50f;
     [SerializeField] private AudioSource audioSource = null;
     
     [Header("GamePlay Settings")]
-    [SerializeField] private TMP_Text controllerSensTextValue = null;
-    [SerializeField] private Slider controllerSensSlider = null;
-    [SerializeField] private float defaultSens = 4f;
-    public float mainControllerSens = 4f;
+    [SerializeField] private TMP_Text controllerSensTextValueY = null;
+    [SerializeField] private Slider controllerSensSliderY = null;
+    [SerializeField] private float defaultSensY = 100f;
+    public float mainControllerSensY = 100f;
+	[SerializeField] private TMP_Text controllerSensTextValueX = null;
+    [SerializeField] private Slider controllerSensSliderX = null;
+    [SerializeField] private float defaultSensX = 100f;
+    public float mainControllerSensX = 100f;
     
     [Header("Toggle Settings")]
     [SerializeField] private Toggle invertYToggle = null;
@@ -43,7 +47,6 @@ public class MenuController: MonoBehaviour
     [Header("Levels To Load")] 
     public string _newGameLevel;
     private string levelToLoad;
-    //private bool isclick;
 
     public void NewGameDialogYes()
     {
@@ -129,7 +132,6 @@ public class MenuController: MonoBehaviour
         //Debug.Log("Réinitialisation des paramètres !");
         InitializeSettings();
     }
-    //
 
     public void ExitButton()
     {
@@ -150,26 +152,23 @@ public class MenuController: MonoBehaviour
         StartCoroutine(ConfirmationBox());
     }
     
-    public void SetControllerSen()
+    public void SetControllerSenY()
     {
-        mainControllerSens = controllerSensSlider.value;
-        controllerSensTextValue.text = mainControllerSens.ToString("0");
+        mainControllerSensY = controllerSensSliderY.value/4;
+        controllerSensTextValueY.text = mainControllerSensY.ToString("0");
+    }
+
+	public void SetControllerSenX()
+    {
+        mainControllerSensX = controllerSensSliderX.value/4;
+        controllerSensTextValueX.text = mainControllerSensX.ToString("0");
     }
 
     public void GamePlayApply()
     {
-        if (invertYToggle.isOn)
-        {
-            PlayerPrefs.SetInt("masterInvertY", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("masterInvertY", 0);
-        }
-        
-        PlayerPrefs.SetFloat("masterSens", mainControllerSens);
+        PlayerPrefs.SetFloat("SensivityY", mainControllerSensY);
+		PlayerPrefs.SetFloat("SensivityX", mainControllerSensX);
         StartCoroutine(ConfirmationBox());
-
     }
 
     public void ResetButton(string MenuType)
@@ -184,10 +183,13 @@ public class MenuController: MonoBehaviour
 
         if (MenuType == "Gameplay")
         {
-            controllerSensSlider.value = defaultSens;
-            mainControllerSens = defaultSens;
-            controllerSensTextValue.text = defaultSens.ToString("0");
-            invertYToggle.isOn = false;
+            controllerSensSliderX.value = defaultSensX;
+            mainControllerSensX = defaultSensX;
+            controllerSensTextValueX.text = defaultSensX.ToString("0");
+			controllerSensSliderY.value = defaultSensY;
+            mainControllerSensY = defaultSensY;
+            controllerSensTextValueY.text = defaultSensY.ToString("0");
+            //invertYToggle.isOn = false;
             GamePlayApply();
         }
     }
