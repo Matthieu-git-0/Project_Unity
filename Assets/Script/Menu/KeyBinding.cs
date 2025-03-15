@@ -9,15 +9,13 @@ public class KeyBindingManager : MonoBehaviour
 
     [Header("PANEL")] public GameObject keyConfirmationPanel;
 
-    [Header("KEY NAMES")] public GameObject forwardtext;
+    [Header("KEY NAMES")] 
+    public GameObject forwardtext;
     public GameObject backwardtext;
     public GameObject lefttext;
     public GameObject righttext;
     public GameObject jumptext;
     public GameObject sprinttext;
-    public GameObject nextinventorytext;
-    public GameObject previousinventorytext;
-    public GameObject maptext;
     public GameObject usetext;
     public GameObject interacttext;
     public GameObject pausetext;
@@ -35,9 +33,6 @@ public class KeyBindingManager : MonoBehaviour
         keyBindingTexts["Right"] = righttext.GetComponent<TMP_Text>();
         keyBindingTexts["Jump"] = jumptext.GetComponent<TMP_Text>();
         keyBindingTexts["Sprint"] = sprinttext.GetComponent<TMP_Text>();
-        keyBindingTexts["Next"] = nextinventorytext.GetComponent<TMP_Text>();
-        keyBindingTexts["Previous"] = previousinventorytext.GetComponent<TMP_Text>();
-        keyBindingTexts["Map"] = maptext.GetComponent<TMP_Text>();
         keyBindingTexts["Use"] = usetext.GetComponent<TMP_Text>();
         keyBindingTexts["Interact"] = interacttext.GetComponent<TMP_Text>();
         keyBindingTexts["Pause"] = pausetext.GetComponent<TMP_Text>();
@@ -90,16 +85,13 @@ public class KeyBindingManager : MonoBehaviour
     {
         Dictionary<string, KeyCode> defaultBindings = new Dictionary<string, KeyCode>
         {
-            { "Forward", KeyCode.W },
+            { "Forward", KeyCode.Z },
             { "Backward", KeyCode.S },
-            { "Left", KeyCode.A },
+            { "Left", KeyCode.Q },
             { "Right", KeyCode.D },
             { "Jump", KeyCode.Space },
             { "Sprint", KeyCode.LeftShift },
-            { "Next", KeyCode.RightArrow },
-            { "Previous", KeyCode.LeftArrow },
-            { "Map", KeyCode.M },
-            { "Use", KeyCode.Q },
+            { "Use", KeyCode.A },
             { "Interact", KeyCode.E },
             { "Pause", KeyCode.Escape }
         };
