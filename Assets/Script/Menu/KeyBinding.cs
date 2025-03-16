@@ -39,6 +39,28 @@ public class KeyBindingManager : MonoBehaviour
 
         LoadKeyBindings();
     }
+    
+    /*void Update()
+    {
+        if (keyConfirmationPanel.activeSelf && currentKeyBinding != null)
+        {
+            foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(keyCode))
+                {
+                    KeyCode correctedKey = ConvertQWERTYtoAZERTY(keyCode);
+
+                    keyBindings[currentKeyBinding] = correctedKey;
+                    SaveKeyBindings();
+                    UpdateKeyBindingText(currentKeyBinding, correctedKey);
+                    keyConfirmationPanel.SetActive(false);
+                    currentKeyBinding = null;
+                    break;
+                }
+            }
+        }
+    }*/
+
 
     void Update()
     {
@@ -80,6 +102,20 @@ public class KeyBindingManager : MonoBehaviour
 
         PlayerPrefs.Save();
     }
+    
+    /*private KeyCode ConvertQWERTYtoAZERTY(KeyCode key)
+    {
+        Dictionary<KeyCode, KeyCode> qwertyToAzerty = new Dictionary<KeyCode, KeyCode>
+        {
+            { KeyCode.A, KeyCode.Q },
+            { KeyCode.Z, KeyCode.W },
+            { KeyCode.W, KeyCode.Z },
+            { KeyCode.Q, KeyCode.A },
+        };
+    
+        return qwertyToAzerty.ContainsKey(key) ? qwertyToAzerty[key] : key;
+    }*/
+
 
     private void LoadKeyBindings()
     {

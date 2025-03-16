@@ -11746,7 +11746,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1295843740}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -12360,7 +12360,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Pause
+          m_StringArgument: Use
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1377823015
@@ -13749,10 +13749,10 @@ MonoBehaviour:
   lefttext: {fileID: 155853144}
   righttext: {fileID: 1822373020}
   jumptext: {fileID: 1026362285}
-  sprinttext: {fileID: 1746460944}
-  usetext: {fileID: 1834206801}
+  sprinttext: {fileID: 1834206801}
+  usetext: {fileID: 1377823009}
   interacttext: {fileID: 1183095931}
-  pausetext: {fileID: 1377823009}
+  pausetext: {fileID: 1746460944}
 --- !u!1 &1542416319
 GameObject:
   m_ObjectHideFlags: 0
@@ -14823,7 +14823,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1602283079}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -15892,7 +15892,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Sprint
+          m_StringArgument: Pause
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1746460950
@@ -16573,7 +16573,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Use
+          m_StringArgument: Sprint
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1834206807
