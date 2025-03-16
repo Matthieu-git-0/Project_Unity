@@ -7,13 +7,9 @@ using TMPro;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class PlayerScript : MonoBehaviour//, IPunObservable
+public class PlayerScript : MonoBehaviour, IPunObservable
 {
-	void Start()
-	{
-		Debug.Log("tegs");
-	}
-	/*[Header("NUMERICAL PARAMETERS")]
+	[Header("NUMERICAL PARAMETERS")]
 	public float walkSpeed = 1.2f;
 	public float runSpeed = 2.0f;
 	public float jumpSpeed = 5.0f;
@@ -39,7 +35,7 @@ public class PlayerScript : MonoBehaviour//, IPunObservable
 	public GameObject character;
 	//public Animator animator;
 
-	[Header("MENUS")]
+	//[Header("MENUS")]
 	//public GameObject pauseObject;
     //private float animatorSides;
     //private float animatorFrontBack;
@@ -69,7 +65,7 @@ public class PlayerScript : MonoBehaviour//, IPunObservable
 		Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        pauseObject.SetActive(false);
+        //pauseObject.SetActive(false);
     }
 
     void Update()
@@ -77,8 +73,8 @@ public class PlayerScript : MonoBehaviour//, IPunObservable
 		// Test s'appliquant uniquement pour le joueur local
         if (view.IsMine)
         {
-	        string interactKey = PlayerPrefs.GetString("Interact", "None");
-	        guiDoorMenu.GetComponent<TMP_Text>().text = $"Press \"{interactKey}\" to interact";
+	        //string interactKey = PlayerPrefs.GetString("Interact", "None");
+	        //guiDoorMenu.GetComponent<TMP_Text>().text = $"Press \"{interactKey}\" to interact";
 
             // Vérification si le joueur est autorisé à bouger
 	        if (canMove && Cursor.lockState == CursorLockMode.Locked)
@@ -148,10 +144,10 @@ public class PlayerScript : MonoBehaviour//, IPunObservable
 	    {
 		    //pauseObject.SetActive(false);
 	    }*/
-	/////}
+	}
 	
 	// Update des sensibilités de rotation camera
-	/*private void UdpateSensitivityCamera()
+	private void UdpateSensitivityCamera()
 	{
 		lookSensitivityX = 2f * PlayerPrefs.GetFloat("sensitivityX", 2f);
 		lookSensitivityY = 2f * PlayerPrefs.GetFloat("sensitivityY", 2f);
@@ -173,7 +169,7 @@ public class PlayerScript : MonoBehaviour//, IPunObservable
         Vector3 direction = Vector3.zero;
 		
 		// Touches de déplacement
-		/*string forwardKey = PlayerPrefs.GetString("Forward", "None");
+		string forwardKey = PlayerPrefs.GetString("Forward", "None");
     	string backwardKey = PlayerPrefs.GetString("Backward", "None");
     	string leftKey = PlayerPrefs.GetString("Left", "None");
     	string rightKey = PlayerPrefs.GetString("Right", "None");
@@ -226,17 +222,17 @@ public class PlayerScript : MonoBehaviour//, IPunObservable
             if (Input.GetKeyDown(GetKeyCodeFromString(jumpKey)))
             {
                 moveDirection.y = jumpSpeed;
-                animator.SetBool("isJumping", true);
+                //animator.SetBool("isJumping", true);
             }
             else
             {
-                animator.SetBool("isJumping", false);
+                //animator.SetBool("isJumping", false);
             }
         }
         else
         {
             moveDirection.y -= gravity * Time.deltaTime; // Application de la gravité
-            animator.SetBool("isJumping", true);
+            //animator.SetBool("isJumping", true);
         }
         
         // Application du mouvement horizontal
@@ -249,7 +245,7 @@ public class PlayerScript : MonoBehaviour//, IPunObservable
         characterController.Move(finalMovement * Time.deltaTime);
 
 		//Update des animations
-		UpdateAnimatorParameters();
+		//UpdateAnimatorParameters();
     }
 
 	// Fonction d'extraction de touche
@@ -258,7 +254,7 @@ public class PlayerScript : MonoBehaviour//, IPunObservable
     	return (KeyCode)System.Enum.Parse(typeof(KeyCode), key);
 	}
 
-	private void UpdateAnimatorParameters()
+	/*private void UpdateAnimatorParameters()
 	{
         // Initialisation
         int moveX = 0;
