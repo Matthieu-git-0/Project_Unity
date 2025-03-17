@@ -1,21 +1,17 @@
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerController : MonoBehaviourPunCallbacks
+public class InitialisationCanvas : MonoBehaviour
 {
     public Canvas[] worldCanvas;
 
-    void Start()
+    public void SetCanvasCamera(Camera playerCamera)
     {
-        if (photonView.IsMine)
+        if (playerCamera != null)
         {
-            Camera playerCam = Camera.main;
-            if (playerCam != null)
+            foreach (Canvas canvas in worldCanvas)
             {
-                foreach (Canvas canvas in worldCanvas)
-                {
-                    canvas.worldCamera = playerCam;
-                }
+                canvas.worldCamera = playerCamera;
             }
         }
     }

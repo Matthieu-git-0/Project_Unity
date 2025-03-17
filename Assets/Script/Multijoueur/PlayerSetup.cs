@@ -9,9 +9,22 @@ public class PlayerSetup : MonoBehaviour
     public CharacterInteraction Interaction;
     public CameraRotation cameraRotation;
     public Camera playerCamera;
+    /*public Canvas[] worldCanvas;
+
+    public void SetCanvasCamera()
+    {
+        if (playerCamera != null)
+        {
+            foreach (Canvas canvas in worldCanvas)
+            {
+                canvas.worldCamera = playerCamera;
+            }
+        }
+    }*/
 
     public void IslocalPlayer()
     {
+        //SetCanvasCamera();
         cameraRotation.enabled = true;
         movement.enabled = true;
         Interaction.enabled = true;

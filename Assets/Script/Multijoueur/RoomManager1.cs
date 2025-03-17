@@ -10,7 +10,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
 {
     public TMP_InputField roomCodeInput;
     public TMP_Text statusText;
-    //private AsyncOperation asyncLoad;
     public GameObject playerPrefab;
     
     public void Start()
@@ -18,20 +17,14 @@ public class RoomManager : MonoBehaviourPunCallbacks
         statusText.text = "Connecting...";
         Debug.Log("Connecting...");
 
-        //PreloadScene("Map");
-
         if (!PhotonNetwork.IsConnected)
         {
             statusText.text = "Connexion à Photon en cours...";
             PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.NetworkingClient.LoadBalancingPeer.DisconnectTimeout = 100000; // 10 secondes
+            //PhotonNetwork.NetworkingClient.LoadBalancingPeer.KeepAliveInBackground = 10;
         }
     }
-    
-    /*public void PreloadScene(string sceneName)
-    {
-        asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        asyncLoad.allowSceneActivation = false;
-    }*/
     
     public override void OnConnectedToMaster()
     {

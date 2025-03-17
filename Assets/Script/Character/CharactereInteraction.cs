@@ -3,15 +3,13 @@ using UnityEngine;
 public class CharacterInteraction : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera = null;
-    [SerializeField] private float interactionDistance = 5.0f;
+    [SerializeField] private float interactionDistance = 4.0f;
     [SerializeField] private LayerMask interactionLayer;
 
     private void Update()
     {
         Vector3 origin = playerCamera.transform.position;
         Vector3 direction = playerCamera.transform.forward;
-
-        //Debug.DrawRay(origin, direction * interactionDistance, Color.green);
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, interactionDistance, interactionLayer))
         {
@@ -40,6 +38,13 @@ public class CharacterInteraction : MonoBehaviour
                 case "Interaction/BodiesContainer":
                     InteractionBodiesContainer(hit);
                     break;
+                
+                case "Interaction/Digicode":
+                    if (hit.collider.TryGetComponent(out KeypadButton keypadButton) && Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        keypadButton.PressButton();
+                    }
+                    break;
 
                 default:
                     //Debug.Log("Objet non interactif touché.");
@@ -50,7 +55,6 @@ public class CharacterInteraction : MonoBehaviour
 
 	private void InteractionKey(RaycastHit hit)
     {
-		//Debug.Log("touche");
         if (Input.GetKeyDown(KeyCode.E))
         {
             InteractableKey key = hit.collider.GetComponent<InteractableKey>();
@@ -136,7 +140,6 @@ public class CharacterInteraction : MonoBehaviour
     
     private void InteractionBodiesContainer(RaycastHit hit)
     {
-        //Debug.Log("knjbhvgcf");
         if (Input.GetKeyDown(KeyCode.E))
         {
             InteractableBodiesContainer bodiesContainer = hit.collider.GetComponent<InteractableBodiesContainer>();
