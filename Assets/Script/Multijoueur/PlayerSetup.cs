@@ -5,29 +5,21 @@ using Photon.Pun;
 
 public class PlayerSetup : MonoBehaviour
 {
-    public PlayerMoovement movement;
     public CharacterInteraction Interaction;
-    public CameraRotation cameraRotation;
+    public PlayerScript playerScript;
     public Camera playerCamera;
-    /*public Canvas[] worldCanvas;
-
-    public void SetCanvasCamera()
-    {
-        if (playerCamera != null)
-        {
-            foreach (Canvas canvas in worldCanvas)
-            {
-                canvas.worldCamera = playerCamera;
-            }
-        }
-    }*/
 
     public void IslocalPlayer()
     {
-        //SetCanvasCamera();
-        cameraRotation.enabled = true;
-        movement.enabled = true;
-        Interaction.enabled = true;
         playerCamera.gameObject.SetActive(true);
+        playerScript.enabled = true;
+        Interaction.enabled = true;
+        StartCoroutine(WaitAndLog());
+    }
+    
+    IEnumerator WaitAndLog()
+    {
+        yield return new WaitForSeconds(7.3f);
+        playerScript.Move(true);
     }
 }

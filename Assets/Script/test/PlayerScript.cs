@@ -44,7 +44,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
 	private PhotonView view;
 
-	private bool canMove = true;
+	private bool canMove = false;
 
 	//public GameObject guiDoorMenu;
 
@@ -156,10 +156,25 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 	// Déplacements de camera
 	private void MoveCamera()
 	{
-		rotationX += -Input.GetAxis("Mouse Y") * lookSensitivityX;												// Detection du mouvement Y de souris
+		/*rotationX += -Input.GetAxis("Mouse Y") * lookSensitivityX;												// Detection du mouvement Y de souris
         rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);											// Blocage du mouvement Y selon les paramètres prédéfinis
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);								// Déplacement de la camera selon les mouvements de la souris
-        character.transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSensitivityY, 0);	// Rotation du joueur pour suivre les mouvements camera
+        character.transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSensitivityY, 0);*/	// Rotation du joueur pour suivre les mouvements camera
+		
+		// Rotation verticale (haut/bas) sur la caméra
+		rotationX += -Input.GetAxis("Mouse Y") * lookSensitivityY;
+		rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+		playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+
+		// Rotation horizontale (gauche/droite) sur le personnage
+		float mouseX = Input.GetAxis("Mouse X") * lookSensitivityX;
+		Vector3 currentRotation = character.transform.rotation.eulerAngles;
+		character.transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y + mouseX, currentRotation.z);
+
+		// Debug pour vérifier les valeurs
+		Debug.Log($"MouseX: {mouseX}, Rotation Y: {character.transform.rotation.eulerAngles.y}");
+
+
 	}
 
 	// Déplacements latéraux
@@ -282,5 +297,10 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 		animatorSides = moveX;
 		animatorFrontBack = moveY;
 		animatorIsRunning = isRunning;
+	}
+
+	public void Move(bool move)
+	{
+		canMove = move;
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Animation_debut : MonoBehaviour
 {
-	public GameObject corp;
+	/*public GameObject corp;
 	public GameObject mouvement;
 	public Animator animation;
 	private CameraRotationv2 characterRotation;
@@ -21,5 +21,5 @@ public class Animation_debut : MonoBehaviour
 		animation.enabled = false;
 		//characterMouvement = GetComponent<CharacterController>();
 		characterRotation.CanMove(true);
-    }
+    }*/
 }
