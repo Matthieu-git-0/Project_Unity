@@ -191,12 +191,12 @@ public class tmp : MonoBehaviour//, //IPunObservable
     	string sprintKey = PlayerPrefs.GetString("Sprint", "None");
     	string jumpKey = PlayerPrefs.GetString("Jump", "None");
 
-	    Debug.Log(forwardKey);
+	    /*Debug.Log(forwardKey);
 	    Debug.Log(backwardKey);
 	    Debug.Log(leftKey);
 	    Debug.Log(rightKey);
 	    Debug.Log(sprintKey);
-	    Debug.Log(jumpKey);
+	    Debug.Log(jumpKey);*/
 
 		// Detection du changement d'état
 		if (Input.GetKey(GetKeyCodeFromString(forwardKey))) 
