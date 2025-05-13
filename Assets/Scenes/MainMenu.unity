@@ -13730,7 +13730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCodeInput: {fileID: 1090001609}
   statusText: {fileID: 804080205}
-  playerPrefab: {fileID: 7754546622745751677, guid: b70ab7eda79dec1478e1baac16964a37, type: 3}
+  playerPrefab: {fileID: 1965416421609774399, guid: 0845e1f91a41a2c42b5136f109a445f7, type: 3}
 --- !u!114 &1528498543
 MonoBehaviour:
   m_ObjectHideFlags: 0

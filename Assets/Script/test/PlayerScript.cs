@@ -10,8 +10,8 @@ using TMPro;
 public class PlayerScript : MonoBehaviour, IPunObservable
 {
 	[Header("NUMERICAL PARAMETERS")]
-	public float walkSpeed = 1.2f;
-	public float runSpeed = 2.0f;
+	public float walkSpeed = 5f;
+	public float runSpeed = 10f;
 	public float jumpSpeed = 5.0f;
 	public float gravity = 20.0f;
 
@@ -66,6 +66,9 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         Cursor.visible = false;
 
         //pauseObject.SetActive(false);
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.useGravity = false;
     }
 
     void Update()
@@ -73,11 +76,11 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 		// Test s'appliquant uniquement pour le joueur local
         if (view.IsMine)
         {
-	        //string interactKey = PlayerPrefs.GetString("Interact", "None");
-	        //guiDoorMenu.GetComponent<TMP_Text>().text = $"Press \"{interactKey}\" to interact";
+            //string interactKey = PlayerPrefs.GetString("Interact", "None");
+            //guiDoorMenu.GetComponent<TMP_Text>().text = $"Press \"{interactKey}\" to interact";
 
             // Vérification si le joueur est autorisé à bouger
-	        if (canMove && Cursor.lockState == CursorLockMode.Locked)
+            if (canMove && Cursor.lockState == CursorLockMode.Locked)
 	        {
 				MovePlayer();
 				MoveCamera();
@@ -161,7 +164,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);								// Déplacement de la camera selon les mouvements de la souris
         character.transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSensitivityY, 0);	// Rotation du joueur pour suivre les mouvements camera
 		
-		/*// Rotation verticale (haut/bas) sur la caméra
+		/*Rotation verticale (haut/bas) sur la caméra
 		rotationX += -Input.GetAxis("Mouse Y") * lookSensitivityY;
 		rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
 		playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
@@ -173,8 +176,6 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
 		// Debug pour vérifier les valeurs
 		Debug.Log($"MouseX: {mouseX}, Rotation Y: {character.transform.rotation.eulerAngles.y}");*/
-
-
 	}
 
 	// Déplacements latéraux
@@ -203,8 +204,9 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
 		// Normalisation du déplacement diagonal
 		direction = direction.normalized;
+        //Debug.Log($"Direction Calculée: {direction}");
 
-		// Gestion du sprint avec stamina
+        // Gestion du sprint avec stamina
         bool isRunning = Input.GetKey(GetKeyCodeFromString(sprintKey));
         
         // Gestion de la stamina
@@ -255,12 +257,16 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
 		// Fusion avec le mouvement vertical
         Vector3 finalMovement = horizontalMovement + Vector3.up * moveDirection.y;
-    
+        //Debug.Log($"Final Movement Applied: {finalMovement}");
         // Déplacement via CharacterController
         characterController.Move(finalMovement * Time.deltaTime);
+        //Debug.Log("CharacterController Move called!");
 
-		//Update des animations
-		UpdateAnimatorParameters();
+        //transform.position += new Vector3(0, 0, 1) * Time.deltaTime;
+
+        //Update des animations
+        UpdateAnimatorParameters();
+        //Debug.Log($"MovePlayer called: {canMove}, Direction: {moveDirection}");
     }
 
 	// Fonction d'extraction de touche
@@ -304,3 +310,155 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 		canMove = move;
 	}
 }
+
+/*
+using UnityEngine;
+using Photon.Pun;
+
+public class PlayerScript : MonoBehaviourPun, IPunObservable
+{
+    [Header("NUMERICAL PARAMETERS")]
+    public float walkSpeed = 1.2f;
+    public float runSpeed = 2.0f;
+    public float jumpSpeed = 5.0f;
+    public float gravity = 20.0f;
+
+    [Header("STAMINA PARAMETERS")]
+    public float playerStamina = 100.0f;
+    private float _maxStamina = 100.0f;
+    private bool canRun = true;
+    public float staminaDrain = 30f;
+    public float staminaRegen = 20f;
+
+    [Header("LOOKING PARAMETERS")]
+    public float lookSensitivityX = 2.0f;
+    public float lookSensitivityY = 2.0f;
+    public float lookXLimit = 45f;
+    private float rotationX = 0;
+
+    [Header("ELEMENTS")]
+    public Camera playerCamera;
+    public GameObject character;
+    public Animator animator;
+
+    private Rigidbody rb;
+    private PhotonView view;
+    public bool canMove = false;
+    private bool isGrounded = true;
+    private Vector3 moveDirection;
+
+    void Start()
+    {
+        view = GetComponent<PhotonView>();
+        rb = GetComponent<Rigidbody>();
+
+        // Vérifie si c'est bien le joueur local
+        if (!view.IsMine) return;
+
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void Update()
+    {
+        if (!view.IsMine || !canMove) return;
+
+        MovePlayer();
+        MoveCamera();
+    }
+
+    void MovePlayer()
+    {
+        // Détection des touches
+        string forwardKey = PlayerPrefs.GetString("Forward", "W");
+        string backwardKey = PlayerPrefs.GetString("Backward", "S");
+        string leftKey = PlayerPrefs.GetString("Left", "A");
+        string rightKey = PlayerPrefs.GetString("Right", "D");
+        string sprintKey = PlayerPrefs.GetString("Sprint", "LeftShift");
+        string jumpKey = PlayerPrefs.GetString("Jump", "Space");
+
+        Vector3 direction = Vector3.zero;
+
+        // Détection du déplacement
+        if (Input.GetKey(GetKeyCodeFromString(forwardKey))) direction += transform.forward;
+        if (Input.GetKey(GetKeyCodeFromString(backwardKey))) direction -= transform.forward;
+        if (Input.GetKey(GetKeyCodeFromString(leftKey))) direction -= transform.right;
+        if (Input.GetKey(GetKeyCodeFromString(rightKey))) direction += transform.right;
+
+        direction = direction.normalized;
+
+        // Gestion du sprint
+        bool isRunning = Input.GetKey(GetKeyCodeFromString(sprintKey)) && canRun;
+        float currentSpeed = isRunning ? runSpeed : walkSpeed;
+
+        // Gestion du saut
+        if (Input.GetKeyDown(GetKeyCodeFromString(jumpKey)) && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            isGrounded = false;
+            animator.SetBool("isJumping", true);
+        }
+
+        // Appliquer le mouvement
+        rb.velocity = new Vector3(direction.x * currentSpeed, rb.velocity.y, direction.z * currentSpeed);
+
+        UpdateAnimator(direction, isRunning);
+    }
+
+    void MoveCamera()
+    {
+        float mouseX = Input.GetAxis("Mouse X") * lookSensitivityX;
+        rotationX += -Input.GetAxis("Mouse Y") * lookSensitivityY;
+        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        character.transform.Rotate(Vector3.up * mouseX);
+    }
+
+    void UpdateAnimator(Vector3 direction, bool isRunning)
+    {
+        animator.SetFloat("Sides", direction.x);
+        animator.SetFloat("Front/Back", direction.z);
+        animator.SetBool("isRunning", isRunning);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            animator.SetBool("isJumping", false);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(animator.GetFloat("Sides"));
+            stream.SendNext(animator.GetFloat("Front/Back"));
+            stream.SendNext(animator.GetBool("isRunning"));
+            stream.SendNext(animator.GetBool("isJumping"));
+        }
+        else
+        {
+            animator.SetFloat("Sides", (float)stream.ReceiveNext());
+            animator.SetFloat("Front/Back", (float)stream.ReceiveNext());
+            animator.SetBool("isRunning", (bool)stream.ReceiveNext());
+            animator.SetBool("isJumping", (bool)stream.ReceiveNext());
+        }
+    }
+
+    private KeyCode GetKeyCodeFromString(string key)
+    {
+        return (KeyCode)System.Enum.Parse(typeof(KeyCode), key);
+    }
+
+    public void Move(bool move)
+    {
+        canMove = move;
+    }
+}*/

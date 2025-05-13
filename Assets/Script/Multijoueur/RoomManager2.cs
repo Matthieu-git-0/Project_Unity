@@ -25,7 +25,7 @@ public class RoomManager2 : MonoBehaviour
         }
             
         GameObject _player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>()?.IslocalPlayer();
+        _player.GetComponentInChildren<PlayerSetup>()?.IslocalPlayer();
         Debug.Log("Player instantiated at: " + spawnPoint.position);
     }
 }
