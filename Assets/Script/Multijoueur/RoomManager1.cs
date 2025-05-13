@@ -98,7 +98,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        //asyncLoad.allowSceneActivation = true;
-        SceneManager.LoadSceneAsync("ChargementScene");
+        PhotonNetwork.LoadLevel("Map");
     }
 }

@@ -22,4 +22,5 @@ public class PlayerSetup : MonoBehaviour
         yield return new WaitForSeconds(7.3f);
         playerScript.Move(true);
     }
+
 }

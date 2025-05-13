@@ -12,8 +12,30 @@ public class LoadingScreen : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(LoadAsyncScene());
+        StartCoroutine(FakeLoading());
     }
+
+    IEnumerator FakeLoading()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < simulatedLoadDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float simulatedProgress = Mathf.Clamp01(elapsedTime / simulatedLoadDuration);
+
+            loadingSlider.value = simulatedProgress;
+            loadingText.text = $"Loading: {simulatedProgress * 100:F0}%";
+
+            yield return null;
+        }
+
+        loadingText.text = "Tap to start!";
+        yield return new WaitUntil(() => Input.anyKeyDown);
+
+        SceneManager.LoadScene("Map");
+    }
+
 
     IEnumerator LoadAsyncScene()
     {

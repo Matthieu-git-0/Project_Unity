@@ -13699,10 +13699,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d4ab1c9f5c6e640ac13946855f16dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 1.2
-  runSpeed: 2
+  walkSpeed: 5
+  runSpeed: 10
   jumpSpeed: 5
-  gravity: 20
+  gravity: 15
   playerStamina: 100
   _staminaDrain: 30
   _staminaRegen: 20
