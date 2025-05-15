@@ -1,38 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class InteractableDoor : MonoBehaviour
+public class InteractableDoor : MonoBehaviourPun
 {
     [SerializeField] private Animator animator;
     [SerializeField] private bool isOpen = false;
 
-    /*public void Start()
-    {
-        animator.SetBool("isOpen", isOpen);
-    }*/
-    
     public void Use()
     {
-        isOpen = !isOpen;
-        animator.SetBool("isOpen", isOpen);
+        //isOpen = !isOpen;
+        //animator.SetBool("isOpen", isOpen);
+        photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, !isOpen);
     }
 
     public void Open()
     {
-        animator.SetBool("isOpen", true);
+        photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, !isOpen);
         StartCoroutine(CloseAfterDelay(5f));
     }
     
     public void OpenForIa()
     {
-        animator.SetBool("isOpen", true);
+        photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, true);
         StartCoroutine(CloseAfterDelay(2f));
     }
 
     private IEnumerator CloseAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        animator.SetBool("isOpen", false);
+        photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, false);
+    }
+
+    [PunRPC]
+    void SyncDoorState(bool newState)
+    {
+        isOpen = newState;
+        animator.SetBool("isOpen", isOpen);
     }
 }
