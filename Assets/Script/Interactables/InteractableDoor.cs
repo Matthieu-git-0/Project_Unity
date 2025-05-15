@@ -20,7 +20,14 @@ public class InteractableDoor : MonoBehaviourPun
         photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, !isOpen);
         StartCoroutine(CloseAfterDelay(5f));
     }
-    
+
+    public void OpenCamera()
+    {
+        photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, true);
+        StartCoroutine(CloseAfterDelay(5f));
+    }
+
+
     public void OpenForIa()
     {
         photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, true);

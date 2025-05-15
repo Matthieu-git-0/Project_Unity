@@ -24,7 +24,7 @@ public class CameraMultiRaycast : MonoBehaviour
                 if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Npc"))
                 {
                     Debug.DrawRay(transform.position, dir.normalized * detectionDistance, Color.green);
-                    door.GetComponent<InteractableDoor>().Open();
+                    door.GetComponent<InteractableDoor>().OpenCamera();
                 }
             }
             else
