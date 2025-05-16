@@ -8,6 +8,18 @@ public class InteractableDoor : MonoBehaviourPun
     [SerializeField] private Animator animator;
     [SerializeField] private bool isOpen = false;
 
+    [SerializeField] private AudioSource doorOpenSound;
+    [SerializeField] private AudioSource doorCloseSound;
+
+    public void playOpenDoorSound()
+    {
+        doorOpenSound.Play();
+    }
+
+    public void playCloseDoorSound()
+    {
+        doorCloseSound.Play();
+    }
     public void Use()
     {
         //isOpen = !isOpen;
