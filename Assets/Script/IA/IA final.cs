@@ -504,6 +504,7 @@ namespace Worq
                         controller.enabled = false; // ou controller.Die();
                     }*/
 
+                    Application.Quit();
                     playerObject.SetActive(false);
 
                     // Bascule caméra sur un autre joueur
