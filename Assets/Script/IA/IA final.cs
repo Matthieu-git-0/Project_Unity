@@ -288,7 +288,6 @@ namespace Worq
 */
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
@@ -338,25 +337,17 @@ namespace Worq
 
             if (group != null)
             {
-                Transform groupTransform = group.transform;
-                int count = groupTransform.childCount;
-                List<Transform> tempList = new List<Transform>();
-
-                for (int i = 0; i < count; i++)
+                var children = new System.Collections.Generic.List<Transform>();
+                foreach (Transform child in group.transform)
                 {
-                    Transform child = groupTransform.GetChild(i);
                     if (child.GetComponent<WaypointIdentifier>())
                     {
-                        tempList.Add(child);
-                        if (child.TryGetComponent(out MeshRenderer renderer)) renderer.enabled = false;
-                        if (child.TryGetComponent(out Collider collider)) collider.enabled = false;
+                        children.Add(child);
+                        if (child.TryGetComponent(out MeshRenderer mr)) mr.enabled = false;
+                        if (child.TryGetComponent(out Collider col)) col.enabled = false;
                     }
                 }
-                patrolPoints = tempList.ToArray();
-            }
-            else
-            {
-                Debug.LogWarning("Group not assigned for " + gameObject.name);
+                patrolPoints = children.ToArray();
             }
         }
 
@@ -374,13 +365,13 @@ namespace Worq
             {
                 GotoNextPoint();
             }
-
-            InvokeRepeating(nameof(FindClosestPlayer), 0f, 0.5f);
         }
 
         void Update()
         {
             if (!PhotonNetwork.IsMasterClient) return;
+
+            FindClosestPlayer();
 
             if (target != null)
             {
@@ -437,15 +428,13 @@ namespace Worq
             foreach (GameObject player in players)
             {
                 if (!player.activeInHierarchy) continue;
-
                 float distance = Vector3.Distance(transform.position, player.transform.position);
-                if (distance < closestDistance && distance <= triggerRadius)
+                if (distance < closestDistance)
                 {
                     closestDistance = distance;
                     closest = player.transform;
                 }
             }
-
             target = closest;
         }
 
@@ -464,8 +453,7 @@ namespace Worq
         IEnumerator PauseAndContinuePatrol()
         {
             isWaiting = true;
-            float waitTime = Random.Range(minPatrolWaitTime, maxPatrolWaitTime);
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(Random.Range(minPatrolWaitTime, maxPatrolWaitTime));
             goToNextPointDirect();
             isWaiting = false;
         }
@@ -476,13 +464,12 @@ namespace Worq
 
             if (randomPatroler)
             {
-                int nextPos;
+                int next;
                 do
                 {
-                    nextPos = Random.Range(0, patrolPoints.Length);
-                } while (nextPos == destPoint);
-
-                destPoint = nextPos;
+                    next = Random.Range(0, patrolPoints.Length);
+                } while (next == destPoint);
+                destPoint = next;
             }
             else
             {
@@ -490,14 +477,12 @@ namespace Worq
             }
         }
 
-        public void ResetPatrol() => reset = true;
-        public void InterruptPatrol() => interruptPatrol = true;
-
         void SwitchToSpectator(GameObject player)
         {
             if (player != null)
             {
-                photonView.RPC("OnPlayerDiedRPC", RpcTarget.AllBuffered, player.GetComponent<PhotonView>().ViewID);
+                int viewID = player.GetComponent<PhotonView>().ViewID;
+                photonView.RPC("OnPlayerDiedRPC", RpcTarget.AllBuffered, viewID);
             }
         }
 
@@ -512,59 +497,75 @@ namespace Worq
 
                 if (targetView.IsMine)
                 {
-                    SpectateOtherPlayer();
+                    // Empêche le joueur de continuer à jouer localement
+                    /*var controller = playerObject.GetComponent<PlayerController>();
+                    if (controller != null)
+                    {
+                        controller.enabled = false; // ou controller.Die();
+                    }*/
+
                     playerObject.SetActive(false);
+
+                    // Bascule caméra sur un autre joueur
+                    SpectateOtherPlayer();
                 }
                 else
                 {
+                    // Côté non-local, on détruit simplement
                     Destroy(playerObject);
                 }
 
+                // Check si la partie doit se finir
                 StartCoroutine(CheckIfGameOver());
             }
         }
 
-        void SpectateOtherPlayer()
+        IEnumerator SpectateOtherPlayer()
         {
+            yield return new WaitForSeconds(0.1f);
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
             foreach (GameObject player in players)
             {
                 if (player.activeInHierarchy)
                 {
-                    Camera mainCam = Camera.main;
-                    if (mainCam != null)
-                    {
-                        mainCam.transform.SetParent(player.transform);
-                        mainCam.transform.localPosition = new Vector3(0, 5, -5);
-                        mainCam.transform.LookAt(player.transform);
-                    }
-                    return;
+                    Camera.main.transform.SetParent(player.transform);
+                    Camera.main.transform.localPosition = new Vector3(0, 5, -5);
+                    Camera.main.transform.localRotation = Quaternion.Euler(30, 0, 0);
+                    yield break;
                 }
             }
 
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("Defaite");
+                PhotonNetwork.LoadLevel("GameOverScene");
             }
         }
 
         IEnumerator CheckIfGameOver()
         {
             yield return new WaitForSeconds(0.5f);
+
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject p in players)
+            bool aliveFound = false;
+
+            foreach (var player in players)
             {
-                if (p.activeInHierarchy)
-                    yield break;
+                if (player.activeInHierarchy)
+                {
+                    aliveFound = true;
+                    break;
+                }
             }
 
-            if (PhotonNetwork.IsMasterClient)
+            if (!aliveFound && PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("Defaite");
+                PhotonNetwork.LoadLevel("GameOverScene");
             }
         }
 
+        public void ResetPatrol() => reset = true;
+        public void InterruptPatrol() => interruptPatrol = true;
         public void SetDeatination(Transform t)
         {
             agent.destination = t.position;
@@ -572,3 +573,4 @@ namespace Worq
         }
     }
 }
+
