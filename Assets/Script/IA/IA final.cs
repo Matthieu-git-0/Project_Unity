@@ -374,7 +374,7 @@ namespace Worq
                 if (distance <= triggerRadius)
                 {
                     agent.SetDestination(target.position);
-                    photonView.RPC("SetWalkRPC", RpcTarget.All, agent.velocity.magnitude > 0.1f);
+                    photonView.RPC("SetWalkRPC", RpcTarget.All, true);
 
                     if (distance <= catchDistance)
                     {
