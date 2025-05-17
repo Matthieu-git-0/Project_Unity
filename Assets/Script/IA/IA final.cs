@@ -538,7 +538,7 @@ namespace Worq
 
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("GameOverScene");
+                PhotonNetwork.LoadLevel("Defaite");
             }
         }
 
@@ -560,7 +560,7 @@ namespace Worq
 
             if (!aliveFound && PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("GameOverScene");
+                PhotonNetwork.LoadLevel("Defaite");
             }
         }
 
