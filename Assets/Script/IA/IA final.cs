@@ -450,6 +450,7 @@ namespace Worq
         {
             int viewID = player.GetComponent<PhotonView>().ViewID;
             photonView.RPC("KillPlayerRPC", RpcTarget.All, viewID);
+            Destroy(player);
         }
 
         [PunRPC]
