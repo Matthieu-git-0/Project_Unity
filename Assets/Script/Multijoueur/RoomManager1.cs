@@ -15,7 +15,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void Start()
     {
         statusText.text = "Connecting...";
-        Debug.Log("Connecting...");
+        //Debug.Log("Connecting...");
 
         if (!PhotonNetwork.IsConnected)
         {
@@ -29,7 +29,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         statusText.text = "You are connected to the Server";
-        Debug.Log("Connected");
+        //Debug.Log("Connected");
         PhotonNetwork.JoinLobby();
     }
     

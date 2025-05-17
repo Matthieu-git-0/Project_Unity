@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
@@ -64,7 +64,7 @@ namespace Worq
         private int waypointCount;
         private int destPoint;
 
-        /*void OnDrawGizmosSelected()
+        void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, triggerRadius);
@@ -274,6 +274,6 @@ namespace Worq
         {
             agent.destination = t.position;
             isWaiting = false;
-        }*/
+        }
     }
-}
+}*/

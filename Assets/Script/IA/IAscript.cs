@@ -27,6 +27,10 @@ public class IAscript : MonoBehaviourPunCallbacks
         {
             agent.SetDestination(target.position);
         }
+        if (!isChasing) 
+        { 
+            return;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,5 +53,5 @@ public class IAscript : MonoBehaviourPunCallbacks
             target = null;
             isChasing = false;
         }
-    }
+    }   
 }
