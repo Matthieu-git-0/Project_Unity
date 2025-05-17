@@ -20,8 +20,6 @@ public class IaInteraction : MonoBehaviour
     {
         Vector3 origin = body.transform.position;
         Vector3 direction = body.transform.forward;
-		//direction.y = 0;
-		//direction.Normalize();
 
         Debug.DrawRay(origin, direction * viewDiastance, Color.green);
         
@@ -39,14 +37,5 @@ public class IaInteraction : MonoBehaviour
 			        break;
 	        }
         }
-
-        /*if (Physics.Raycast(origin, direction, out RaycastHit hit, viewDiastance, interactionLayer) && hit.collider.tag == "Interaction/Slice")
-        {
-			hit.collider.GetComponent<InteractableDoor>().Open();
-		}
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, viewDiastance, interactionLayer) && hit.collider.tag == "Interaction/Door")
-        {
-	        hit.collider.GetComponent<InteractableDoor>().OpenForIa();
-        }*/
     }
 }	
