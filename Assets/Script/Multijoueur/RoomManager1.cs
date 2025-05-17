@@ -81,7 +81,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
             Debug.Log("We are in the Lobby");
 
             RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 2;
+            roomOptions.MaxPlayers = 3;
             roomOptions.IsVisible = true;
             roomOptions.IsOpen = true;
 
