@@ -288,6 +288,7 @@ namespace Worq
 */
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
@@ -295,59 +296,52 @@ using Photon.Pun;
 namespace Worq
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(AWSEntityIdentifier))]
     [RequireComponent(typeof(NavMeshAgent))]
-    [RequireComponent(typeof(Animation))]
-    public class IA : MonoBehaviourPunCallbacks
+    [RequireComponent(typeof(PhotonView))]
+    public class IA_Multiplayer : MonoBehaviourPunCallbacks
     {
-        [Header("Group")]
+        [Header("Patrol Settings")]
         public WaypointRoute group;
-        [HideInInspector] public int groupID = 0;
-
-        [Header("Patrol")]
         public float minPatrolWaitTime = 1f;
         public float maxPatrolWaitTime = 3f;
         public bool randomPatroler = false;
 
-        [Header("Agent")]
+        [Header("Agent Settings")]
         public float moveSpeed = 3f;
         public float stoppingDistance = 1f;
         public float angularSpeed = 500f;
         public float distanceFromGround = 0.5f;
+        public float triggerRadius = 10f;
+        public float catchDistance = 2f;
 
-        [SerializeField] float triggerRadius = 10f;
-        [SerializeField] Animator animator;
+        [Header("Animation")]
+        public Animator animator;
 
         private NavMeshAgent agent;
         private PhotonView photonView;
-
         private Transform[] patrolPoints;
         private Transform target;
-
         private bool isWaiting;
-        private bool interruptPatrol;
-        private bool reset;
-        private bool resetPatrol;
         private int destPoint;
 
         void Awake()
         {
-            photonView = GetComponent<PhotonView>();
             agent = GetComponent<NavMeshAgent>();
+            photonView = GetComponent<PhotonView>();
 
             if (group != null)
             {
-                var children = new System.Collections.Generic.List<Transform>();
+                List<Transform> points = new List<Transform>();
                 foreach (Transform child in group.transform)
                 {
                     if (child.GetComponent<WaypointIdentifier>())
                     {
-                        children.Add(child);
+                        points.Add(child);
                         if (child.TryGetComponent(out MeshRenderer mr)) mr.enabled = false;
                         if (child.TryGetComponent(out Collider col)) col.enabled = false;
                     }
                 }
-                patrolPoints = children.ToArray();
+                patrolPoints = points.ToArray();
             }
         }
 
@@ -356,14 +350,14 @@ namespace Worq
             if (!PhotonNetwork.IsMasterClient) return;
 
             agent.autoBraking = false;
-            agent.stoppingDistance = stoppingDistance;
             agent.speed = moveSpeed;
+            agent.stoppingDistance = stoppingDistance;
             agent.angularSpeed = angularSpeed;
             agent.baseOffset = distanceFromGround;
 
-            if (patrolPoints != null && patrolPoints.Length > 0)
+            if (patrolPoints.Length > 0)
             {
-                GotoNextPoint();
+                GoToNextPoint();
             }
         }
 
@@ -375,17 +369,18 @@ namespace Worq
 
             if (target != null)
             {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+                float distance = Vector3.Distance(transform.position, target.position);
 
-                if (distanceToTarget <= triggerRadius)
+                if (distance <= triggerRadius)
                 {
                     agent.SetDestination(target.position);
                     photonView.RPC("SetWalkRPC", RpcTarget.All, agent.velocity.magnitude > 0.1f);
 
-                    if (distanceToTarget <= 2f)
+                    if (distance <= catchDistance)
                     {
                         photonView.RPC("SetWalkRPC", RpcTarget.All, false);
                         SwitchToSpectator(target.gameObject);
+                        target = null;
                         return;
                     }
                 }
@@ -395,72 +390,43 @@ namespace Worq
                 }
             }
 
-            if (target == null)
+            if (target == null && agent.remainingDistance <= stoppingDistance && !isWaiting)
             {
-                if (resetPatrol || reset)
-                {
-                    photonView.RPC("SetWalkRPC", RpcTarget.All, true);
-                    agent.isStopped = false;
-                    goToNextPointDirect();
-                    interruptPatrol = resetPatrol = reset = false;
-                }
-
-                if (interruptPatrol)
-                {
-                    photonView.RPC("SetWalkRPC", RpcTarget.All, false);
-                    agent.isStopped = true;
-                }
-
-                if (!interruptPatrol && !isWaiting && agent.remainingDistance <= stoppingDistance && patrolPoints != null)
-                {
-                    photonView.RPC("SetWalkRPC", RpcTarget.All, true);
-                    GotoNextPoint();
-                }
+                photonView.RPC("SetWalkRPC", RpcTarget.All, true);
+                GoToNextPoint();
             }
         }
 
         void FindClosestPlayer()
         {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            float closestDistance = Mathf.Infinity;
+            float minDist = Mathf.Infinity;
             Transform closest = null;
 
             foreach (GameObject player in players)
             {
                 if (!player.activeInHierarchy) continue;
-                float distance = Vector3.Distance(transform.position, player.transform.position);
-                if (distance < closestDistance)
+                float dist = Vector3.Distance(transform.position, player.transform.position);
+                if (dist < minDist)
                 {
-                    closestDistance = distance;
+                    minDist = dist;
                     closest = player.transform;
                 }
             }
+
             target = closest;
         }
 
-        [PunRPC]
-        public void SetWalkRPC(bool isWalking)
+        void GoToNextPoint()
         {
-            animator.SetBool("IsWalk", isWalking);
+            StartCoroutine(PatrolCoroutine());
         }
 
-        void GotoNextPoint()
-        {
-            if (patrolPoints == null || patrolPoints.Length == 0) return;
-            StartCoroutine(PauseAndContinuePatrol());
-        }
-
-        IEnumerator PauseAndContinuePatrol()
+        IEnumerator PatrolCoroutine()
         {
             isWaiting = true;
             yield return new WaitForSeconds(Random.Range(minPatrolWaitTime, maxPatrolWaitTime));
-            goToNextPointDirect();
-            isWaiting = false;
-        }
-
-        void goToNextPointDirect()
-        {
-            agent.destination = patrolPoints[destPoint].position;
+            if (patrolPoints.Length == 0) yield break;
 
             if (randomPatroler)
             {
@@ -475,103 +441,100 @@ namespace Worq
             {
                 destPoint = (destPoint + 1) % patrolPoints.Length;
             }
+
+            agent.destination = patrolPoints[destPoint].position;
+            isWaiting = false;
         }
 
         void SwitchToSpectator(GameObject player)
         {
-            if (player != null)
-            {
-                int viewID = player.GetComponent<PhotonView>().ViewID;
-                photonView.RPC("OnPlayerDiedRPC", RpcTarget.AllBuffered, viewID);
-            }
+            int viewID = player.GetComponent<PhotonView>().ViewID;
+            photonView.RPC("KillPlayerRPC", RpcTarget.All, viewID);
         }
 
         [PunRPC]
-        void OnPlayerDiedRPC(int playerViewID)
+        void KillPlayerRPC(int playerViewID)
         {
             PhotonView targetView = PhotonView.Find(playerViewID);
+            if (targetView == null) return;
 
-            if (targetView != null)
+            GameObject playerObj = targetView.gameObject;
+
+            if (targetView.IsMine)
             {
-                GameObject playerObject = targetView.gameObject;
+                // Stop controls
+                var a = playerObj.GetComponent<PlayerScript>();
+                var b = playerObj.GetComponent<CharacterInteraction>();
 
-                if (targetView.IsMine)
-                {
-                    // Empêche le joueur de continuer à jouer localement
-                    /*var controller = playerObject.GetComponent<PlayerController>();
-                    if (controller != null)
-                    {
-                        controller.enabled = false; // ou controller.Die();
-                    }*/
+                if (a != null) a.enabled = false;
+                if (b != null) b.enabled = false;
 
-                    Application.Quit();
-                    playerObject.SetActive(false);
+                // Hide mesh & colliders
+                foreach (var r in playerObj.GetComponentsInChildren<Renderer>())
+                    r.enabled = false;
+                foreach (var c in playerObj.GetComponentsInChildren<Collider>())
+                    c.enabled = false;
 
-                    // Bascule caméra sur un autre joueur
-                    SpectateOtherPlayer();
-                }
-                else
-                {
-                    // Côté non-local, on détruit simplement
-                    Destroy(playerObject);
-                }
-
-                // Check si la partie doit se finir
-                StartCoroutine(CheckIfGameOver());
+                // Switch camera to spectator mode
+                StartCoroutine(SpectateAnotherPlayer());
             }
+
+            // Let master decide if game over
+            if (PhotonNetwork.IsMasterClient)
+                StartCoroutine(CheckGameOver());
         }
 
-        IEnumerator SpectateOtherPlayer()
+        IEnumerator SpectateAnotherPlayer()
         {
-            yield return new WaitForSeconds(0.1f);
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            yield return new WaitForSeconds(0.2f);
 
-            foreach (GameObject player in players)
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var p in players)
             {
-                if (player.activeInHierarchy)
+                if (p.activeInHierarchy && p.GetComponent<PhotonView>().IsMine)
                 {
-                    Camera.main.transform.SetParent(player.transform);
+                    Camera.main.transform.SetParent(p.transform);
                     Camera.main.transform.localPosition = new Vector3(0, 5, -5);
                     Camera.main.transform.localRotation = Quaternion.Euler(30, 0, 0);
                     yield break;
                 }
             }
 
-            if (PhotonNetwork.IsMasterClient)
-            {
-                PhotonNetwork.LoadLevel("Defaite");
-            }
+            // No player left — optional: go to a default scene camera or UI
+            Camera.main.transform.SetParent(null);
         }
 
-        IEnumerator CheckIfGameOver()
+        IEnumerator CheckGameOver()
         {
-            yield return new WaitForSeconds(0.5f);
-
+            yield return new WaitForSeconds(1f);
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            bool aliveFound = false;
 
-            foreach (var player in players)
+            bool anyAlive = false;
+            foreach (var p in players)
             {
-                if (player.activeInHierarchy)
+                var renderers = p.GetComponentsInChildren<Renderer>();
+                foreach (var r in renderers)
                 {
-                    aliveFound = true;
-                    break;
+                    if (r.enabled)
+                    {
+                        anyAlive = true;
+                        break;
+                    }
                 }
+                if (anyAlive) break;
             }
 
-            if (!aliveFound && PhotonNetwork.IsMasterClient)
+            if (!anyAlive)
             {
                 PhotonNetwork.LoadLevel("Defaite");
             }
         }
 
-        public void ResetPatrol() => reset = true;
-        public void InterruptPatrol() => interruptPatrol = true;
-        public void SetDeatination(Transform t)
+        [PunRPC]
+        void SetWalkRPC(bool isWalking)
         {
-            agent.destination = t.position;
-            isWaiting = false;
+            if (animator != null)
+                animator.SetBool("IsWalk", isWalking);
         }
     }
 }
-

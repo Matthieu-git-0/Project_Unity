@@ -6,7 +6,7 @@ public class CameraLookAtPoints : MonoBehaviour
     public Transform[] points;
     public float rotationSpeed = 2f;
     public float waitTime = 2f;
-    public IA ia;
+    //public IA ia;
     public float detectionRange = 10f;
     public float detectionAngle = 90f;
     public LayerMask detectionLayer;
@@ -52,12 +52,12 @@ public class CameraLookAtPoints : MonoBehaviour
                 
                 if (angleToPlayer <= detectionAngle / 2)
                 {
-                    if (ia != null && !ia.enabled)
+                    /*if (ia != null && !ia.enabled)
                     {
                         Debug.Log("dfghj");
                         ia.enabled = true;
                     }
-                    Debug.Log("Joueur détecté ! IA activée.");
+                    Debug.Log("Joueur détecté ! IA activée.");*/
                     return;
                 }
             }
