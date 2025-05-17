@@ -239,7 +239,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         else
         {
             moveDirection.y -= gravity * Time.deltaTime; // Application de la gravité
-            animator.SetBool("isJumping", true);
+            animator.SetBool("isJumping", false);
         }
 
         // Application du mouvement horizontal
