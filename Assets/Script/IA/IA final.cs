@@ -288,6 +288,7 @@ namespace Worq
 */
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
@@ -335,13 +336,11 @@ namespace Worq
             photonView = GetComponent<PhotonView>();
             agent = GetComponent<NavMeshAgent>();
 
-            // Initialisation des points de patrouille
             if (group != null)
             {
                 Transform groupTransform = group.transform;
                 int count = groupTransform.childCount;
-
-                var tempList = new System.Collections.Generic.List<Transform>();
+                List<Transform> tempList = new List<Transform>();
 
                 for (int i = 0; i < count; i++)
                 {
@@ -353,7 +352,6 @@ namespace Worq
                         if (child.TryGetComponent(out Collider collider)) collider.enabled = false;
                     }
                 }
-
                 patrolPoints = tempList.ToArray();
             }
             else
@@ -376,13 +374,13 @@ namespace Worq
             {
                 GotoNextPoint();
             }
+
+            InvokeRepeating(nameof(FindClosestPlayer), 0f, 0.5f);
         }
 
         void Update()
         {
             if (!PhotonNetwork.IsMasterClient) return;
-
-            FindClosestPlayer();
 
             if (target != null)
             {
@@ -396,11 +394,7 @@ namespace Worq
                     if (distanceToTarget <= 2f)
                     {
                         photonView.RPC("SetWalkRPC", RpcTarget.All, false);
-
                         SwitchToSpectator(target.gameObject);
-
-                        // Vérifier s'il reste des joueurs actifs
-                        CheckActivePlayers();
                         return;
                     }
                 }
@@ -431,11 +425,6 @@ namespace Worq
                     photonView.RPC("SetWalkRPC", RpcTarget.All, true);
                     GotoNextPoint();
                 }
-
-                agent.stoppingDistance = stoppingDistance;
-                agent.speed = moveSpeed;
-                agent.angularSpeed = angularSpeed;
-                agent.baseOffset = distanceFromGround;
             }
         }
 
@@ -447,6 +436,8 @@ namespace Worq
 
             foreach (GameObject player in players)
             {
+                if (!player.activeInHierarchy) continue;
+
                 float distance = Vector3.Distance(transform.position, player.transform.position);
                 if (distance < closestDistance && distance <= triggerRadius)
                 {
@@ -506,11 +497,6 @@ namespace Worq
         {
             if (player != null)
             {
-                
-
-                // On peut aussi activer une caméra de spectateur ici
-                // Exemple: SpecCamera.SetActive(true);
-
                 photonView.RPC("OnPlayerDiedRPC", RpcTarget.AllBuffered, player.GetComponent<PhotonView>().ViewID);
             }
         }
@@ -524,22 +510,16 @@ namespace Worq
             {
                 GameObject playerObject = targetView.gameObject;
 
-                // Si c'est moi, je passe en mode spectateur
                 if (targetView.IsMine)
                 {
                     SpectateOtherPlayer();
-
-                    // Optionnel : désactiver le contrôle du joueur au lieu de détruire immédiatement
-                    // Pour éviter de casser le contrôle de caméra, etc.
                     playerObject.SetActive(false);
                 }
                 else
                 {
-                    // Détruire le joueur sur les autres clients
                     Destroy(playerObject);
                 }
 
-                // Vérifier s'il reste des joueurs actifs
                 StartCoroutine(CheckIfGameOver());
             }
         }
@@ -552,62 +532,39 @@ namespace Worq
             {
                 if (player.activeInHierarchy)
                 {
-                    Camera.main.transform.SetParent(player.transform);
-                    Camera.main.transform.localPosition = new Vector3(0, 5, -5);
-                    Camera.main.transform.LookAt(player.transform);
+                    Camera mainCam = Camera.main;
+                    if (mainCam != null)
+                    {
+                        mainCam.transform.SetParent(player.transform);
+                        mainCam.transform.localPosition = new Vector3(0, 5, -5);
+                        mainCam.transform.LookAt(player.transform);
+                    }
                     return;
                 }
             }
 
-            // Aucun joueur actif → retour menu ou fermeture
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("GameOverScene"); // ou Application.Quit();
+                PhotonNetwork.LoadLevel("Defaite");
             }
         }
-
 
         IEnumerator CheckIfGameOver()
         {
-            yield return new WaitForSeconds(0.5f); // attendre désactivation/destruction
-
+            yield return new WaitForSeconds(0.5f);
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            bool anyAlive = false;
-
             foreach (GameObject p in players)
             {
                 if (p.activeInHierarchy)
-                {
-                    anyAlive = true;
-                    break;
-                }
+                    yield break;
             }
 
-            if (!anyAlive && PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("GameOverScene"); // Ou Application.Quit();
+                PhotonNetwork.LoadLevel("Defaite");
             }
         }
 
-
-        void CheckActivePlayers()
-        {
-            // Vérifier s'il y a encore des joueurs actifs dans la partie
-            int activePlayersCount = 0;
-            foreach (var player in PhotonNetwork.PlayerList)
-            {
-                if (player.IsInactive) continue; // Si le joueur est inactif (spectateur), on ne le compte pas
-
-                activePlayersCount++;
-            }
-
-            if (activePlayersCount == 0)
-            {
-                // Si plus de joueurs actifs, fermer le jeu
-                PhotonNetwork.LeaveRoom();
-                //Application.Quit();
-            }
-        }
         public void SetDeatination(Transform t)
         {
             agent.destination = t.position;
