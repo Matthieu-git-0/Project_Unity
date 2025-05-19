@@ -46,6 +46,10 @@ public class CharacterInteraction : MonoBehaviour
                     }
                     break;
 
+                case "Interaction/Electricity":
+                    Elec(hit);
+                    break;
+
                 default:
                     //Debug.Log("Objet non interactif touché.");
                     break;
@@ -151,6 +155,23 @@ public class CharacterInteraction : MonoBehaviour
             else
             {
                 Debug.LogError("Le script InteractableBodiesContainer est manquant.", hit.collider);
+            }
+        }
+    }
+
+    private void Elec(RaycastHit hit)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            CoupureElectrique elect = hit.collider.GetComponent<CoupureElectrique>();
+
+            if (elect != null)
+            {
+                elect.DisableAllLightsAndNotify();
+            }
+            else
+            {
+                Debug.LogError("Le script InteractableElectricity est manquant.", hit.collider);
             }
         }
     }

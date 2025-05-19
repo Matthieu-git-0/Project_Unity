@@ -12,6 +12,7 @@ TagManager:
   - Interaction/BodiesContainer
   - Npc
   - Interaction/Digicode
+  - Interaction/Electricity
   layers:
   - Default
   - TransparentFX
