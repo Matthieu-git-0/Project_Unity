@@ -50,6 +50,10 @@ public class CharacterInteraction : MonoBehaviour
                     Elec(hit);
                     break;
 
+                case "Interaction/Casier":
+                    InteractionCasier(hit);
+                    break;
+
                 default:
                     //Debug.Log("Objet non interactif touché.");
                     break;
@@ -172,6 +176,23 @@ public class CharacterInteraction : MonoBehaviour
             else
             {
                 Debug.LogError("Le script InteractableElectricity est manquant.", hit.collider);
+            }
+        }
+    }
+
+    private void InteractionCasier(RaycastHit hit)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interactable_Casier casier = hit.collider.GetComponent<Interactable_Casier>();
+
+            if (casier != null)
+            {
+                casier.Interact();
+            }
+            else
+            {
+                Debug.LogError("Le script casier est manquant.", hit.collider);
             }
         }
     }

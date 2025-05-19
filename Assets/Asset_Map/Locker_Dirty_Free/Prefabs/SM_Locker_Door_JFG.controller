@@ -35,7 +35,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Casier_douche_ouverture
-  m_Speed: 0.05
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5633759344313414054}
@@ -68,7 +68,7 @@ AnimatorStateMachine:
     m_Position: {x: 400, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3727309829386435120}
-    m_Position: {x: 410, y: 160, z: 0}
+    m_Position: {x: 410, y: 170, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -124,7 +124,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.2259829
   m_TransitionOffset: 0
   m_ExitTime: 0.78571427
   m_HasExitTime: 0

@@ -13,6 +13,7 @@ TagManager:
   - Npc
   - Interaction/Digicode
   - Interaction/Electricity
+  - Interaction/Casier
   layers:
   - Default
   - TransparentFX

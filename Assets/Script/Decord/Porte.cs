@@ -23,15 +23,14 @@ public class Porte : MonoBehaviourPun
 
     public void Useforever()
     {
-        photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, !isOpen);
+        photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, true);
     }
 
     
-
     [PunRPC]
     void SyncDoorState(bool newState)
     {
         isOpen = newState;
-        animator.SetBool("isOpen", isOpen);
+        animator.SetBool("isOpen", newState);
     }
 }
