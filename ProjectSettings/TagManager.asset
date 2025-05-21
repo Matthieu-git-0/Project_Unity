@@ -23,7 +23,7 @@ TagManager:
   - UI
   - Interactable
   - Player
-  - 
+  - papier
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: papier
+    uniqueID: 3698427085
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
