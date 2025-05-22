@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviourPun
 
     public IEnumerator PlayDefeatCinematic()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
+
         Camera[] cameras = Camera.allCameras;
         foreach (Camera cam in cameras)
         {

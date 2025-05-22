@@ -29,7 +29,7 @@ public class InteractableDoor : MonoBehaviourPun
 
     public void Open()
     {
-        photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, !isOpen);
+        photonView.RPC("SyncDoorState", RpcTarget.AllBuffered, true);
         StartCoroutine(CloseAfterDelay(5f));
     }
 
