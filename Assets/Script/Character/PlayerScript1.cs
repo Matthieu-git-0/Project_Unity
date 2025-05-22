@@ -132,19 +132,18 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     {
         if (Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Pause", "None"))))
 	    {
-            if (pauseObject.activeSelf)
-            {
-                pauseObject.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            else
-            {
-                pauseObject.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-		    
+		    pauseObject.SetActive(true);
+		    Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+	    }
+
+		if (Cursor.lockState == CursorLockMode.None && Cursor.visible)
+	    {
+		    pauseObject.SetActive(true);
+	    }
+	    else
+	    {
+		    pauseObject.SetActive(false);
 	    }
     }
 

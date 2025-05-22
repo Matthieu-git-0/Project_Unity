@@ -27558,6 +27558,14 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2882961755003574901, guid: 941167c0edc6d0249b27f933da4d2a08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6461206020809158792}
+    - target: {fileID: 2882961755003574901, guid: 941167c0edc6d0249b27f933da4d2a08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 3162429662734925427, guid: 941167c0edc6d0249b27f933da4d2a08, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -27653,10 +27661,14 @@ PrefabInstance:
     - target: {fileID: 5124217965923457923, guid: 941167c0edc6d0249b27f933da4d2a08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4247527032670436945}
+      objectReference: {fileID: 5104784193807688510}
     - target: {fileID: 5124217965923457923, guid: 941167c0edc6d0249b27f933da4d2a08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: ExitMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124217965923457923, guid: 941167c0edc6d0249b27f933da4d2a08, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6481590207165925453, guid: 941167c0edc6d0249b27f933da4d2a08, type: 3}
       propertyPath: m_Name
@@ -27708,6 +27720,11 @@ PrefabInstance:
 --- !u!1 &1781288940830212813 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6481590207165925453, guid: 941167c0edc6d0249b27f933da4d2a08, type: 3}
+  m_PrefabInstance: {fileID: 4704945673244691072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6461206020809158792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1792858772305295880, guid: 941167c0edc6d0249b27f933da4d2a08, type: 3}
   m_PrefabInstance: {fileID: 4704945673244691072}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &7685505105809634547 stripped
