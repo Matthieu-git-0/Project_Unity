@@ -46,16 +46,19 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
     private bool canMove = false;
 
+    private float time = 0f;
+    private float Maxtime = 3600f;
+    
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
 
     void Start()
     {
-        // Verification des sensibilités de rotation camera
+        // Verification des sensibilitï¿½s de rotation camera
         lookSensitivityX = 2f * PlayerPrefs.GetFloat("sensitivityX", 2f);
         lookSensitivityY = 2f * PlayerPrefs.GetFloat("sensitivityY", 2f);
 
-        // Initialisation des composants réseaux et physiques
+        // Initialisation des composants rï¿½seaux et physiques
         characterController = GetComponent<CharacterController>();
         view = GetComponent<PhotonView>();
 
@@ -74,26 +77,50 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
     void Update()
     {
+        
+        time += Time.deltaTime;
+        
+        
+        
         // Test s'appliquant uniquement pour le joueur local
         if (view.IsMine)
         {
-            // Vérification si le joueur est autorisé à bouger
-            if (canMove && Cursor.lockState == CursorLockMode.Locked)
+            if (time < Maxtime)
             {
-                MovePlayer();
-                MoveCamera();
-            }
-            else // Sinon Update des paramètres de pause
-            {
-                UdpateSensitivityCamera();
+                if (time > 2400)
+                {
+                    canRun = false;
+                    walkSpeed = 3f;
+                    gravity = 10.0f;
+                }
+                else if (time > 1200)
+                {
+                    walkSpeed = 4f;
+                    
+                }
+                
+                if (canMove && Cursor.lockState == CursorLockMode.Locked)
+                {
+                    MovePlayer();
+                    MoveCamera();
+                }
+                else // Sinon Update des paramï¿½tres de pause
+                {
+                    UdpateSensitivityCamera();
+                }
+
+                CheckPauseActivation(); // Activation ou dï¿½sactivation du menu pause)
             }
 
-            CheckPauseActivation(); // Activation ou désactivation du menu pause
-
+            else
+            {
+                PhotonNetwork.LoadLevel("Victoire");
+            }
+            
         }
         else
         {
-            // Application des paramètres synchronisés pour les autres joueurs
+            // Application des paramï¿½tres synchronisï¿½s pour les autres joueurs
             animator.SetFloat("Sides", animatorSides);
             animator.SetFloat("Front/Back", animatorFrontBack);
             animator.SetBool("isRunning", animatorIsRunning);
@@ -106,7 +133,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     {
         if (stream.IsWriting)
         {
-            // Envoie des paramètres de l'Animator locaux aux autres joueurs
+            // Envoie des paramï¿½tres de l'Animator locaux aux autres joueurs
             stream.SendNext(animatorSides);
             stream.SendNext(animatorFrontBack);
             stream.SendNext(animatorIsRunning);
@@ -114,13 +141,13 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         }
         else
         {
-            // Reception des paramètres de l'Animator depuis le serveur
+            // Reception des paramï¿½tres de l'Animator depuis le serveur
             animatorSides = (float)stream.ReceiveNext();
             animatorFrontBack = (float)stream.ReceiveNext();
             animatorIsRunning = (bool)stream.ReceiveNext();
             animatorIsJumping = (bool)stream.ReceiveNext();
 
-            // Appliquer ces paramètres à l'Animator local
+            // Appliquer ces paramï¿½tres ï¿½ l'Animator local
             animator.SetFloat("Sides", animatorSides);
             animator.SetFloat("Front/Back", animatorFrontBack);
             animator.SetBool("isRunning", animatorIsRunning);
@@ -147,29 +174,29 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 	    }
     }
 
-    // Update des sensibilités de rotation camera
+    // Update des sensibilitï¿½s de rotation camera
     private void UdpateSensitivityCamera()
     {
         lookSensitivityX = 2f * PlayerPrefs.GetFloat("sensitivityX", 2f);
         lookSensitivityY = 2f * PlayerPrefs.GetFloat("sensitivityY", 2f);
     }
 
-    // Déplacements de camera
+    // Dï¿½placements de camera
     private void MoveCamera()
     {
         rotationX += -Input.GetAxis("Mouse Y") * lookSensitivityX;												// Detection du mouvement Y de souris
-        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);											// Blocage du mouvement Y selon les paramètres prédéfinis
-        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);								// Déplacement de la camera selon les mouvements de la souris
+        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);											// Blocage du mouvement Y selon les paramï¿½tres prï¿½dï¿½finis
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);								// Dï¿½placement de la camera selon les mouvements de la souris
         character.transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSensitivityY, 0);    // Rotation du joueur pour suivre les mouvements camera
     }
 
-    // Déplacements latéraux
+    // Dï¿½placements latï¿½raux
     private void MovePlayer()
     {
         // Initialisation du droites vectorielles
         Vector3 direction = Vector3.zero;
 
-        // Touches de déplacement
+        // Touches de dï¿½placement
         string forwardKey = PlayerPrefs.GetString("Forward", "None");
         string backwardKey = PlayerPrefs.GetString("Backward", "None");
         string leftKey = PlayerPrefs.GetString("Left", "None");
@@ -177,7 +204,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         string sprintKey = PlayerPrefs.GetString("Sprint", "None");
         string jumpKey = PlayerPrefs.GetString("Jump", "None");
 
-        // Detection du changement d'état
+        // Detection du changement d'ï¿½tat
         if (Input.GetKey(GetKeyCodeFromString(forwardKey)))
             direction += transform.forward;
         if (Input.GetKey(GetKeyCodeFromString(backwardKey)))
@@ -187,9 +214,9 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         if (Input.GetKey(GetKeyCodeFromString(rightKey)))
             direction += transform.right;
 
-        // Normalisation du déplacement diagonal
+        // Normalisation du dï¿½placement diagonal
         direction = direction.normalized;
-        //Debug.Log($"Direction Calculée: {direction}");
+        //Debug.Log($"Direction Calculï¿½e: {direction}");
 
         // Gestion du sprint avec stamina
         bool isRunning = Input.GetKey(GetKeyCodeFromString(sprintKey));
@@ -233,7 +260,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         }
         else
         {
-            moveDirection.y -= gravity * Time.deltaTime; // Application de la gravité
+            moveDirection.y -= gravity * Time.deltaTime; // Application de la gravitï¿½
             animator.SetBool("isJumping", false);
         }
 
@@ -243,7 +270,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         // Fusion avec le mouvement vertical
         Vector3 finalMovement = horizontalMovement + Vector3.up * moveDirection.y;
 
-        // Déplacement via CharacterController
+        // Dï¿½placement via CharacterController
         characterController.Move(finalMovement * Time.deltaTime);
 
         //Update des animations
@@ -262,25 +289,25 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         int moveX = 0;
         int moveY = 0;
 
-        // Vérification des touches directionnelles
+        // Vï¿½rification des touches directionnelles
         bool isMovingForward = Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Forward", "None")));
         bool isMovingBackward = Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Backward", "None")));
         bool isMovingLeft = Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Left", "None")));
         bool isMovingRight = Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Right", "None")));
 
-        // Sprint et état de marche
+        // Sprint et ï¿½tat de marche
         bool isRunning = Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Sprint", "None"))) && canRun;
 
         // Attribution des valeurs pour l'Animator (int)
         moveY = isMovingForward ? 1 : (isMovingBackward ? -1 : 0);
         moveX = isMovingRight ? 1 : (isMovingLeft ? -1 : 0);
 
-        // Mise à jour de l'Animator avec des entiers
+        // Mise ï¿½ jour de l'Animator avec des entiers
         animator.SetFloat("Sides", moveX);
         animator.SetFloat("Front/Back", moveY);
         animator.SetBool("isRunning", isRunning);
 
-        // Enregistrement pour la synchronisation réseau
+        // Enregistrement pour la synchronisation rï¿½seau
         animatorSides = moveX;
         animatorFrontBack = moveY;
         animatorIsRunning = isRunning;
