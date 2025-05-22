@@ -132,18 +132,19 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     {
         if (Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Pause", "None"))))
 	    {
-		    pauseObject.SetActive(true);
-		    Cursor.lockState = CursorLockMode.None;
-			Cursor.visible = true;
-	    }
-
-		if (Cursor.lockState == CursorLockMode.None && Cursor.visible)
-	    {
-		    pauseObject.SetActive(true);
-	    }
-	    else
-	    {
-		    pauseObject.SetActive(false);
+            if (pauseObject.activeSelf)
+            {
+                pauseObject.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                pauseObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+		    
 	    }
     }
 
@@ -284,6 +285,13 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         animatorSides = moveX;
         animatorFrontBack = moveY;
         animatorIsRunning = isRunning;
+    }
+
+    public void ExitMenu()
+    {
+        pauseObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void Move(bool move)
