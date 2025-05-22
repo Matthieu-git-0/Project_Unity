@@ -36,7 +36,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     public Animator animator;
 
     [Header("MENUS")]
-    //public GameObject pauseObject;
+    public GameObject pauseObject;
     private float animatorSides;
     private float animatorFrontBack;
     private bool animatorIsRunning;
@@ -45,8 +45,6 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     private PhotonView view;
 
     private bool canMove = false;
-
-    //public GameObject guiDoorMenu;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -79,9 +77,6 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         // Test s'appliquant uniquement pour le joueur local
         if (view.IsMine)
         {
-            //string interactKey = PlayerPrefs.GetString("Interact", "None");
-            //guiDoorMenu.GetComponent<TMP_Text>().text = $"Press \"{interactKey}\" to interact";
-
             // Vérification si le joueur est autorisé à bouger
             if (canMove && Cursor.lockState == CursorLockMode.Locked)
             {
@@ -135,21 +130,21 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
     private void CheckPauseActivation()
     {
-        /*if (Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Pause", "None"))))
+        if (Input.GetKey(GetKeyCodeFromString(PlayerPrefs.GetString("Pause", "None"))))
 	    {
-		    //pauseObject.SetActive(true);
+		    pauseObject.SetActive(true);
 		    Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 	    }
 
 		if (Cursor.lockState == CursorLockMode.None && Cursor.visible)
 	    {
-		    //pauseObject.SetActive(true);
+		    pauseObject.SetActive(true);
 	    }
 	    else
 	    {
-		    //pauseObject.SetActive(false);
-	    }*/
+		    pauseObject.SetActive(false);
+	    }
     }
 
     // Update des sensibilités de rotation camera
