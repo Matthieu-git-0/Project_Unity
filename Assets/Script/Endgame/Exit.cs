@@ -1,16 +1,25 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class ChangeSceneOnTrigger : MonoBehaviour
+public class CollierTrigger : MonoBehaviourPun
 {
-    public string sceneName = "NomDeTaScene";
-    public string requiredTag = "Player";
+    private bool triggered = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(requiredTag))
+        if (triggered) return;
+        if (!other.CompareTag("Player")) return;
+
+        if (PhotonNetwork.IsMasterClient)
         {
-            SceneManager.LoadScene(sceneName);
+            triggered = true;
+            photonView.RPC("StartDefeatSequence", RpcTarget.All);
         }
+    }
+
+    [PunRPC]
+    private void StartDefeatSequence()
+    {
+        GameManager.Instance.StartCoroutine(GameManager.Instance.PlayDefeatCinematic());
     }
 }

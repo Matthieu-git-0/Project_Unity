@@ -45,6 +45,7 @@ MonoBehaviour:
   - OnPlayerDiedRPC
   - KillPlayerRPC
   - RPC_DisableAllLights
+  - StartDefeatSequence
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
