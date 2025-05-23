@@ -12,8 +12,6 @@ public class GameEndManager : MonoBehaviour
 
     public void Restart()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");
     }
 }
