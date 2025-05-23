@@ -1,0 +1,638 @@
+fileFormatVersion: 2
+guid: d4ec4b1375cf78249bed4740922553bb
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Barrel.001
+  - first:
+      1: 100002
+    second: case
+  - first:
+      1: 100004
+    second: computer.001
+  - first:
+      1: 100006
+    second: computer.002
+  - first:
+      1: 100008
+    second: containement box
+  - first:
+      1: 100010
+    second: floppy disc
+  - first:
+      1: 100012
+    second: floppy disc.001
+  - first:
+      1: 100014
+    second: floppy disc.002
+  - first:
+      1: 100016
+    second: floppy disc.003
+  - first:
+      1: 100018
+    second: floppy disc.004
+  - first:
+      1: 100020
+    second: floppy disc.005
+  - first:
+      1: 100022
+    second: glove box
+  - first:
+      1: 100024
+    second: inner walls
+  - first:
+      1: 100026
+    second: keyboard base
+  - first:
+      1: 100028
+    second: keyboard keys
+  - first:
+      1: 100030
+    second: lab glass
+  - first:
+      1: 100032
+    second: lab glass.001
+  - first:
+      1: 100034
+    second: lab glass.002
+  - first:
+      1: 100036
+    second: lab glass.003
+  - first:
+      1: 100038
+    second: lab glass.004
+  - first:
+      1: 100040
+    second: lab glass.005
+  - first:
+      1: 100042
+    second: lab glass.006
+  - first:
+      1: 100044
+    second: lab glass.007
+  - first:
+      1: 100046
+    second: lab glass.008
+  - first:
+      1: 100048
+    second: //RootNode
+  - first:
+      1: 100050
+    second: liquid
+  - first:
+      1: 100052
+    second: liquid.001
+  - first:
+      1: 100054
+    second: microscope
+  - first:
+      1: 100056
+    second: paper
+  - first:
+      1: 100058
+    second: paper.001
+  - first:
+      1: 100060
+    second: tray
+  - first:
+      1: 100062
+    second: x ray
+  - first:
+      1: 100064
+    second: x ray.001
+  - first:
+      4: 400000
+    second: Barrel.001
+  - first:
+      4: 400002
+    second: case
+  - first:
+      4: 400004
+    second: computer.001
+  - first:
+      4: 400006
+    second: computer.002
+  - first:
+      4: 400008
+    second: containement box
+  - first:
+      4: 400010
+    second: floppy disc
+  - first:
+      4: 400012
+    second: floppy disc.001
+  - first:
+      4: 400014
+    second: floppy disc.002
+  - first:
+      4: 400016
+    second: floppy disc.003
+  - first:
+      4: 400018
+    second: floppy disc.004
+  - first:
+      4: 400020
+    second: floppy disc.005
+  - first:
+      4: 400022
+    second: glove box
+  - first:
+      4: 400024
+    second: inner walls
+  - first:
+      4: 400026
+    second: keyboard base
+  - first:
+      4: 400028
+    second: keyboard keys
+  - first:
+      4: 400030
+    second: lab glass
+  - first:
+      4: 400032
+    second: lab glass.001
+  - first:
+      4: 400034
+    second: lab glass.002
+  - first:
+      4: 400036
+    second: lab glass.003
+  - first:
+      4: 400038
+    second: lab glass.004
+  - first:
+      4: 400040
+    second: lab glass.005
+  - first:
+      4: 400042
+    second: lab glass.006
+  - first:
+      4: 400044
+    second: lab glass.007
+  - first:
+      4: 400046
+    second: lab glass.008
+  - first:
+      4: 400048
+    second: //RootNode
+  - first:
+      4: 400050
+    second: liquid
+  - first:
+      4: 400052
+    second: liquid.001
+  - first:
+      4: 400054
+    second: microscope
+  - first:
+      4: 400056
+    second: paper
+  - first:
+      4: 400058
+    second: paper.001
+  - first:
+      4: 400060
+    second: tray
+  - first:
+      4: 400062
+    second: x ray
+  - first:
+      4: 400064
+    second: x ray.001
+  - first:
+      23: 2300000
+    second: Barrel.001
+  - first:
+      23: 2300002
+    second: case
+  - first:
+      23: 2300004
+    second: computer.001
+  - first:
+      23: 2300006
+    second: computer.002
+  - first:
+      23: 2300008
+    second: containement box
+  - first:
+      23: 2300010
+    second: floppy disc
+  - first:
+      23: 2300012
+    second: floppy disc.001
+  - first:
+      23: 2300014
+    second: floppy disc.002
+  - first:
+      23: 2300016
+    second: floppy disc.003
+  - first:
+      23: 2300018
+    second: floppy disc.004
+  - first:
+      23: 2300020
+    second: floppy disc.005
+  - first:
+      23: 2300022
+    second: glove box
+  - first:
+      23: 2300024
+    second: inner walls
+  - first:
+      23: 2300026
+    second: keyboard base
+  - first:
+      23: 2300028
+    second: keyboard keys
+  - first:
+      23: 2300030
+    second: lab glass
+  - first:
+      23: 2300032
+    second: lab glass.001
+  - first:
+      23: 2300034
+    second: lab glass.002
+  - first:
+      23: 2300036
+    second: lab glass.003
+  - first:
+      23: 2300038
+    second: lab glass.004
+  - first:
+      23: 2300040
+    second: lab glass.005
+  - first:
+      23: 2300042
+    second: lab glass.006
+  - first:
+      23: 2300044
+    second: lab glass.007
+  - first:
+      23: 2300046
+    second: lab glass.008
+  - first:
+      23: 2300048
+    second: liquid
+  - first:
+      23: 2300050
+    second: liquid.001
+  - first:
+      23: 2300052
+    second: microscope
+  - first:
+      23: 2300054
+    second: paper
+  - first:
+      23: 2300056
+    second: paper.001
+  - first:
+      23: 2300058
+    second: tray
+  - first:
+      23: 2300060
+    second: x ray
+  - first:
+      23: 2300062
+    second: x ray.001
+  - first:
+      33: 3300000
+    second: Barrel.001
+  - first:
+      33: 3300002
+    second: case
+  - first:
+      33: 3300004
+    second: computer.001
+  - first:
+      33: 3300006
+    second: computer.002
+  - first:
+      33: 3300008
+    second: containement box
+  - first:
+      33: 3300010
+    second: floppy disc
+  - first:
+      33: 3300012
+    second: floppy disc.001
+  - first:
+      33: 3300014
+    second: floppy disc.002
+  - first:
+      33: 3300016
+    second: floppy disc.003
+  - first:
+      33: 3300018
+    second: floppy disc.004
+  - first:
+      33: 3300020
+    second: floppy disc.005
+  - first:
+      33: 3300022
+    second: glove box
+  - first:
+      33: 3300024
+    second: inner walls
+  - first:
+      33: 3300026
+    second: keyboard base
+  - first:
+      33: 3300028
+    second: keyboard keys
+  - first:
+      33: 3300030
+    second: lab glass
+  - first:
+      33: 3300032
+    second: lab glass.001
+  - first:
+      33: 3300034
+    second: lab glass.002
+  - first:
+      33: 3300036
+    second: lab glass.003
+  - first:
+      33: 3300038
+    second: lab glass.004
+  - first:
+      33: 3300040
+    second: lab glass.005
+  - first:
+      33: 3300042
+    second: lab glass.006
+  - first:
+      33: 3300044
+    second: lab glass.007
+  - first:
+      33: 3300046
+    second: lab glass.008
+  - first:
+      33: 3300048
+    second: liquid
+  - first:
+      33: 3300050
+    second: liquid.001
+  - first:
+      33: 3300052
+    second: microscope
+  - first:
+      33: 3300054
+    second: paper
+  - first:
+      33: 3300056
+    second: paper.001
+  - first:
+      33: 3300058
+    second: tray
+  - first:
+      33: 3300060
+    second: x ray
+  - first:
+      33: 3300062
+    second: x ray.001
+  - first:
+      43: 4300000
+    second: Barrel.001
+  - first:
+      43: 4300002
+    second: case
+  - first:
+      43: 4300004
+    second: lab glass
+  - first:
+      43: 4300006
+    second: lab glass.001
+  - first:
+      43: 4300008
+    second: liquid
+  - first:
+      43: 4300010
+    second: lab glass.002
+  - first:
+      43: 4300012
+    second: lab glass.003
+  - first:
+      43: 4300014
+    second: lab glass.004
+  - first:
+      43: 4300016
+    second: lab glass.005
+  - first:
+      43: 4300018
+    second: lab glass.006
+  - first:
+      43: 4300020
+    second: lab glass.007
+  - first:
+      43: 4300022
+    second: lab glass.008
+  - first:
+      43: 4300024
+    second: computer.001
+  - first:
+      43: 4300026
+    second: computer.002
+  - first:
+      43: 4300028
+    second: x ray
+  - first:
+      43: 4300030
+    second: paper.001
+  - first:
+      43: 4300032
+    second: paper
+  - first:
+      43: 4300034
+    second: x ray.001
+  - first:
+      43: 4300036
+    second: microscope
+  - first:
+      43: 4300038
+    second: keyboard base
+  - first:
+      43: 4300040
+    second: keyboard keys
+  - first:
+      43: 4300042
+    second: floppy disc.001
+  - first:
+      43: 4300044
+    second: floppy disc.002
+  - first:
+      43: 4300046
+    second: floppy disc.003
+  - first:
+      43: 4300048
+    second: floppy disc.004
+  - first:
+      43: 4300050
+    second: floppy disc.005
+  - first:
+      43: 4300052
+    second: floppy disc
+  - first:
+      43: 4300054
+    second: glove box
+  - first:
+      43: 4300056
+    second: containement box
+  - first:
+      43: 4300058
+    second: liquid.001
+  - first:
+      43: 4300060
+    second: tray
+  - first:
+      43: 4300062
+    second: inner walls
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Barrel
+    second: {fileID: 2100000, guid: 3a1966a429ad68848b57da48384d4794, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Case
+    second: {fileID: 2100000, guid: f1d314fb4fe23ae4fbd32e4164af861d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: computer
+    second: {fileID: 2100000, guid: 1b4709dbc5ff6614b98ecb0b0ae6b663, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: details
+    second: {fileID: 2100000, guid: 3ec2f674e44092b45a2a8a7bde96fa32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: b41d14656e6c2654e99e31ad8014bca7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: human.body
+    second: {fileID: 2100000, guid: 1699d6456fa53484c8fcf8dd2e1354f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: inner walls
+    second: {fileID: 2100000, guid: cfea8d94acbb1de46ab3136cca3778c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: microscope
+    second: {fileID: 2100000, guid: 491bb2aa682ebd8469707681a35a8284, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
