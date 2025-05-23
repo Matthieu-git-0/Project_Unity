@@ -527,7 +527,7 @@ namespace Worq
 
             if (!anyAlive)
             {
-                PhotonNetwork.LoadLevel("Defaite");
+                PhotonNetwork.LoadLevel("Victoire");
             }
         }
 
