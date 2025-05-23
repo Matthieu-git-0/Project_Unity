@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4863223534655107342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2145263807144860023}
+  - component: {fileID: 2894873763272903635}
+  - component: {fileID: 2926785498015082274}
+  - component: {fileID: 2006111489454004031}
+  m_Layer: 0
+  m_Name: MenuController (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2145263807144860023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863223534655107342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1245.0852, y: 847.878, z: 413.57733}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2894873763272903635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863223534655107342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4902c741026dc2340affa3c9d6d6408a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTextValue: {fileID: 0}
+  volumeSlider: {fileID: 0}
+  defaultVolume: 100
+  audioSource: {fileID: 0}
+  controllerSensTextValueY: {fileID: 0}
+  controllerSensSliderY: {fileID: 0}
+  defaultSensY: 100
+  mainControllerSensY: 100
+  controllerSensTextValueX: {fileID: 0}
+  controllerSensSliderX: {fileID: 0}
+  defaultSensX: 100
+  mainControllerSensX: 100
+  brightnessSlider: {fileID: 0}
+  brightnessValueText: {fileID: 0}
+  resolutionDropdown: {fileID: 0}
+  fullscreenToggle: {fileID: 0}
+  qualityDropdown: {fileID: 0}
+  confirmationPrompt: {fileID: 0}
+  _newGameLevel: ChargementScene
+--- !u!114 &2926785498015082274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863223534655107342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16018df727ec0bb468517d8ca62056be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomCodeInput: {fileID: 0}
+  statusText: {fileID: 0}
+  playerPrefab: {fileID: 1965416421609774399, guid: 0845e1f91a41a2c42b5136f109a445f7, type: 3}
+--- !u!114 &2006111489454004031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863223534655107342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf61717a0769f643993eb3d37f10522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyConfirmationPanel: {fileID: 0}
+  forwardtext: {fileID: 0}
+  backwardtext: {fileID: 0}
+  lefttext: {fileID: 0}
+  righttext: {fileID: 0}
+  jumptext: {fileID: 0}
+  sprinttext: {fileID: 0}
+  usetext: {fileID: 0}
+  interacttext: {fileID: 0}
+  pausetext: {fileID: 0}
