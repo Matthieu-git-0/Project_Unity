@@ -443,7 +443,7 @@ namespace Worq
 
             agent.destination = patrolPoints[destPoint].position;
             isWaiting = false;
-            photonView.RPC("SetWalkRPC", RpcTarget.All, true);
+            //photonView.RPC("SetWalkRPC", RpcTarget.All, true);
         }
 
         void SwitchToSpectator(GameObject player)
