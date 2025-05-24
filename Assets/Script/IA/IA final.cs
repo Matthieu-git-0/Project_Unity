@@ -366,6 +366,7 @@ namespace Worq
             if (!PhotonNetwork.IsMasterClient) return;
 
             FindClosestPlayer();
+            photonView.RPC("SetWalkRPC", RpcTarget.All, true);
 
             if (target != null)
             {
@@ -374,7 +375,6 @@ namespace Worq
                 if (distance <= triggerRadius)
                 {
                     agent.SetDestination(target.position);
-                    photonView.RPC("SetWalkRPC", RpcTarget.All, true);
 
                     if (distance <= catchDistance)
                     {
@@ -392,7 +392,6 @@ namespace Worq
 
             if (target == null && agent.remainingDistance <= stoppingDistance && !isWaiting)
             {
-                photonView.RPC("SetWalkRPC", RpcTarget.All, true);
                 GoToNextPoint();
             }
         }
@@ -444,6 +443,7 @@ namespace Worq
 
             agent.destination = patrolPoints[destPoint].position;
             isWaiting = false;
+            photonView.RPC("SetWalkRPC", RpcTarget.All, true);
         }
 
         void SwitchToSpectator(GameObject player)
